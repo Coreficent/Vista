@@ -6,18 +6,24 @@
 
     public class Genesis : ReinforcedBehavior
     {
-
-        protected List<Vector3> Neighbors = new List<Vector3>();
-        protected float Chance = 0.5f;
-
         protected virtual void Start()
         {
+            BoxCollider collider = GetComponent<BoxCollider>();
+            collider.isTrigger = true;
 
+            Rigidbody rigidbody = GetComponent<Rigidbody>();
+            rigidbody.isKinematic = true;
+            rigidbody.useGravity = false;
         }
+
+        protected virtual void OnTriggerEnter(Collider other)
+        {
+            DebugUtility.Log("collision");
+        }
+
 
         public virtual List<Genesis> Generate()
         {
-            DebugUtility.Log("Generate Empty");
             return new List<Genesis>();
         }
 
