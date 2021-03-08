@@ -16,22 +16,19 @@
             rigidbody.useGravity = false;
         }
 
-        protected virtual void OnTriggerEnter(Collider other)
-        {
-            DebugUtility.Log("collision");
-        }
-
-
         public virtual List<Genesis> Generate()
         {
             return new List<Genesis>();
         }
 
-        protected virtual Genesis Create(Genesis genesis, Vector3 position)
+        protected virtual IEnumerable<Genesis> Create(Genesis genesis, Vector3 position)
         {
-            Genesis result = Instantiate(genesis);
-            result.transform.position += position;
-            return result;
+            if (!Physics.CheckBox(transform.position + position, new Vector3(0.25f, 0.25f, 0.25f)))
+            {
+                Genesis clone = Instantiate(genesis);
+                clone.transform.position += position;
+                yield return clone;
+            }
         }
     }
 }
