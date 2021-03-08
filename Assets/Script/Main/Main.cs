@@ -1,18 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Main : MonoBehaviour
+﻿namespace Coreficent.Main
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    using Coreficent.Utility;
+    using UnityEngine;
 
-    // Update is called once per frame
-    void Update()
+    public class Main : ReinforcedBehavior
     {
-        
+        public GameObject publicVar;
+
+        [SerializeField]
+        private GameObject serializeVar;
+
+        private GameObject privateVar;
+
+        void Start()
+        {
+            DebugUtility.Log("start");
+            DebugUtility.Log("end");
+        }
     }
 }
