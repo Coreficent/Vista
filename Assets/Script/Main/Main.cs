@@ -1,21 +1,41 @@
 ﻿namespace Coreficent.Main
 {
+    using Coreficent.Controller;
+    using Coreficent.Generator;
     using Coreficent.Utility;
+    using System.Collections.Generic;
     using UnityEngine;
 
     public class Main : ReinforcedBehavior
     {
-        public GameObject publicVar;
-
         [SerializeField]
-        private GameObject serializeVar;
+        private Genesis land;
 
-        private GameObject privateVar;
+        private Queue<Genesis> landQueue = new Queue<Genesis>();
 
-        void Start()
+        private TimeController timeController = new TimeController();
+
+        protected virtual void Start()
         {
             DebugUtility.Log("start");
+            landQueue.Enqueue(land);
+            timeController.Reset();
             DebugUtility.Log("end");
+        }
+
+        protected virtual void Update()
+        {
+            if (timeController.TimePassed > 2.0f)
+            {
+                if (landQueue.Count > 0)
+                {
+                    foreach (var genesis in landQueue.Dequeue().Generate())
+                    {
+                        landQueue.Enqueue(genesis);
+                    }
+                }
+                timeController.Reset();
+            }
         }
     }
 }
