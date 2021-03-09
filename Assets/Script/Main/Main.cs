@@ -11,11 +11,17 @@
         [SerializeField]
         private TileFactory tileFactory;
 
-        private Queue<Genesis> landQueue = new Queue<Genesis>();
+        private Queue<Genesis> tileQueue = new Queue<Genesis>();
 
-        private TimeController timeController = new TimeController();
+        private readonly TimeController timeController = new TimeController();
 
-        private Board board = new Board(7);
+        private enum GenerationState
+        {
+            Land,
+            Road
+        }
+
+        private GenerationState state = GenerationState.Land;
 
         protected virtual void Start()
         {
@@ -26,10 +32,27 @@
         {
             if (timeController.TimePassed > 0.1f)
             {
-                if(board.HasNext())
+                switch (state)
                 {
-                    tileFactory.NextTile(board.Next());
+                    case GenerationState.Land:
+
+                        if (tileFactory.HasNext())
+                        {
+                            tileFactory.NextTile(tileFactory.Next());
+                        }
+                        else
+                        {
+                            state = GenerationState.Road;
+                        }
+                        break;
+                    case GenerationState.Road:
+                        DebugUtility.Log("road");
+                        break;
+                    default:
+                        DebugUtility.Warn("unexpected generation state");
+                        break;
                 }
+
                 timeController.Reset();
             }
         }
