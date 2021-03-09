@@ -60,7 +60,7 @@
                     case GenerationState.Land:
                         if (land.HasNext())
                         {
-                            board.RepairTile(land.Next());
+                            board.Place(land.Next(), factory.Create(Factory.GRASS));
                         }
                         else
                         {

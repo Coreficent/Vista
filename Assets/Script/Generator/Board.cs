@@ -17,6 +17,8 @@
 
         private TileBase[,] board;
 
+        private Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
+
         public int Radius
         {
             get { return radius; }
@@ -34,6 +36,14 @@
             }
             board = new TileBase[radius, radius];
         }
+
+        public void Place(Vector2Int position, TileBase tile)
+        {
+            TileBase tower1 = Instantiate(tile);
+            tower1.transform.position = new Vector3(position.x, 0, position.y);
+            board[position.x, position.y] = tower1;
+        }
+
 
 
         public void PlaceTile(Vector2Int position, TileBase tile)

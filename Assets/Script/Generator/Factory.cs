@@ -2,12 +2,14 @@
 {
     using Coreficent.Tile;
     using Coreficent.Utility;
-    using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
     public class Factory : ReinforcedBehavior
     {
+        public static string GRASS = "Grass";
+
+
         [SerializeField]
         private TileBase grass;
 
@@ -15,7 +17,7 @@
 
         protected virtual void Start()
         {
-            tiles["Grass"] = grass;
+            tiles[GRASS] = grass;
         }
 
         public TileBase Create(string name)

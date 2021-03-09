@@ -46,5 +46,21 @@
         {
             return 0;
         }
+
+        public string HashName()
+        {
+            string result = "";
+            string delimiter = ":";
+
+            result += Mathf.RoundToInt(transform.position.x * 10.0f);
+            result += delimiter;
+            result += Mathf.RoundToInt(transform.position.y * 10.0f);
+            result += delimiter;
+            result += Mathf.RoundToInt(transform.position.z * 10.0f);
+            result += delimiter;
+
+            return result;
+        }
+
     }
 }
