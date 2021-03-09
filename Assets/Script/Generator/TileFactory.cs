@@ -21,7 +21,7 @@
             {
                 for (var y = 0; y < size; ++y)
                 {
-                    positions.Add(new Tuple<int, int>(x - size / 2, y - size / 2));
+                    positions.Add(new Tuple<int, int>(x, y));
                 }
             }
             board = new Genesis[size, size];
