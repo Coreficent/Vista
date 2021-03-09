@@ -60,15 +60,17 @@
 
                             tileFactory.PlaceTile(position);
 
-                            if (!set.Contains(position))
+
+                            foreach (var i in tileFactory.GetTile(position).GetNeighbors(position))
                             {
-                                foreach (var i in tileFactory.GetTile(position).GetNeighbors(position))
+                                if (!set.Contains(i))
                                 {
                                     tileFactory.Enqueue(i);
                                 }
-
-                                set.Add(position);
                             }
+
+                            set.Add(position);
+
 
                             DebugUtility.Log("queue size", tileFactory.QueueCount());
 
