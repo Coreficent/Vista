@@ -1,7 +1,7 @@
 ﻿namespace Coreficent.Main
 {
     using Coreficent.Controller;
-    using Coreficent.Generator;
+    using Coreficent.Tile;
     using Coreficent.Utility;
     using System;
     using System.Collections.Generic;

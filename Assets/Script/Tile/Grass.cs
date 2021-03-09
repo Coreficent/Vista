@@ -1,5 +1,4 @@
-﻿
-namespace Coreficent.Generator
+﻿namespace Coreficent.Tile
 {
     using System.Collections.Generic;
     using UnityEngine;

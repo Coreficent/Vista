@@ -1,4 +1,4 @@
-﻿namespace Coreficent.Generator
+﻿namespace Coreficent.Tile
 {
     using Coreficent.Utility;
     using System;
