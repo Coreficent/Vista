@@ -8,6 +8,8 @@
     public class TileFactory : ReinforcedBehavior
     {
         public Genesis Tile;
+        public Genesis TileRiverStraight;
+
         public int size;
 
         private int index = 0;
@@ -37,9 +39,19 @@
             return positions[index++];
         }
 
-        public void NextTile(Tuple<int, int> position)
+        public void NextTile(Genesis type, Tuple<int, int> position)
         {
-            board[position.Item1, position.Item2] = Instantiate(Tile, new Vector3(position.Item1, 0.0f, position.Item2), Quaternion.identity);
+            if (board[position.Item1, position.Item2])
+            {
+                Destroy(board[position.Item1, position.Item2].gameObject);
+            }
+
+            board[position.Item1, position.Item2] = Instantiate(type, new Vector3(position.Item1, 0.0f, position.Item2), Quaternion.identity);
+        }
+
+        public Tuple<int, int> Random()
+        {
+            return positions[UnityEngine.Random.Range(0, board.Length)];
         }
     }
 }

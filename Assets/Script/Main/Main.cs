@@ -3,6 +3,7 @@
     using Coreficent.Controller;
     using Coreficent.Generator;
     using Coreficent.Utility;
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
 
@@ -11,7 +12,7 @@
         [SerializeField]
         private TileFactory tileFactory;
 
-        private Queue<Genesis> tileQueue = new Queue<Genesis>();
+        private Queue<Tuple<int, int>> tileQueue = new Queue<Tuple<int, int>>();
 
         private readonly TimeController timeController = new TimeController();
 
@@ -38,15 +39,16 @@
 
                         if (tileFactory.HasNext())
                         {
-                            tileFactory.NextTile(tileFactory.Next());
+                            tileFactory.NextTile(tileFactory.Tile, tileFactory.Next());
                         }
                         else
                         {
+                            tileQueue.Enqueue(tileFactory.Random());
                             state = GenerationState.Road;
                         }
                         break;
                     case GenerationState.Road:
-                        DebugUtility.Log("road");
+                        
                         break;
                     default:
                         DebugUtility.Warn("unexpected generation state");

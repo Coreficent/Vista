@@ -194,7 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be967b90b1f6f45b1e3e70a6470b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tile: {fileID: 2743017058218492969, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
+  Tile: {fileID: 2856165973383886931, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
+  TileRiverStraight: {fileID: 4846035783756131801, guid: 2b92efc23f83d2142b648a9a6acb1c64,
+    type: 3}
+  size: 7
 --- !u!4 &513397988
 Transform:
   m_ObjectHideFlags: 0
