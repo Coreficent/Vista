@@ -8,10 +8,15 @@
 
     public class Factory : ReinforcedBehavior
     {
-
-
+        [SerializeField]
+        private TileBase grass;
 
         private Dictionary<string, TileBase> tiles = new Dictionary<string, TileBase>();
+
+        protected virtual void Start()
+        {
+            tiles["Grass"] = grass;
+        }
 
         public TileBase Create(string name)
         {

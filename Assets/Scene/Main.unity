@@ -150,9 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a561f428d3f824149aa38f47a89f8c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 513397987}
+  factory: {fileID: 1653958999}
   Tower1: {fileID: 8102924231879215983, guid: 12f64f93692f0da459284a8c074758f3, type: 3}
   River1: {fileID: 129600928667786536, guid: 2b92efc23f83d2142b648a9a6acb1c64, type: 3}
-  board: {fileID: 513397987}
 --- !u!4 &432189074
 Transform:
   m_ObjectHideFlags: 0
@@ -399,6 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653958998}
+  - component: {fileID: 1653958999}
   m_Layer: 0
   m_Name: Factory
   m_TagString: Untagged
@@ -420,3 +422,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1653958999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653958997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5089569de945d247a64fe2b86542be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grass: {fileID: 2856165973383886931, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
