@@ -53,7 +53,6 @@
 
         public void RepairTile(Vector2Int position)
         {
-            TileBase type;
 
             if (board[position.x, position.y])
             {
