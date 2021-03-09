@@ -1,4 +1,5 @@
-﻿namespace Coreficent.Generator
+﻿
+namespace Coreficent.Generator
 {
     using System.Collections.Generic;
     using UnityEngine;
