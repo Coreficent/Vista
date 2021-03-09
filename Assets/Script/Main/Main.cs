@@ -27,6 +27,8 @@
 
         private float timeGap = 0.01f;
 
+        private Queue<Tuple<Vector2Int, Genesis>> queue = new Queue<Tuple<Vector2Int, Genesis>>();
+
         private enum GenerationState
         {
             Land,
@@ -69,6 +71,9 @@
                         else
                         {
                             timeGap = 1.0f;
+                            Vector2Int position = tileFactory.Random();
+                            queue.Enqueue(new Tuple<Vector2Int, Genesis>(position, River1)); ;
+                            set.Add(position);
                             state = GenerationState.Road;
                         }
 
@@ -77,7 +82,67 @@
                         break;
 
                     case GenerationState.Road:
-                        tileFactory.RepairTile(tileFactory.Random());
+
+                        if (queue.Count > 0)
+                        {
+                            var rootedGenesis = queue.Dequeue();
+                            Vector2Int posision = rootedGenesis.Item1;
+                            Genesis genesis = rootedGenesis.Item2;
+
+                            tileFactory.PlaceTile(posision, genesis);
+
+                            if (genesis.North.Count > 0)
+                            {
+                                Vector2Int newPosition = new Vector2Int(posision.x, posision.y + 1);
+                                if (tileFactory.ValidRange(newPosition))
+                                {
+                                    if (!set.Contains(newPosition))
+                                    {
+                                        queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.North[UnityEngine.Random.Range(0, genesis.North.Count)]));
+                                        set.Add(newPosition);
+                                    }
+                                }
+                            }
+                            if (genesis.South.Count > 0)
+                            {
+                                Vector2Int newPosition = new Vector2Int(posision.x, posision.y - 1);
+                                if (tileFactory.ValidRange(newPosition))
+                                {
+                                    if (!set.Contains(newPosition))
+                                    {
+                                        queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.South[UnityEngine.Random.Range(0, genesis.South.Count)]));
+                                        set.Add(newPosition);
+                                    }
+                                }
+                            }
+                            if (genesis.West.Count > 0)
+                            {
+                                Vector2Int newPosition = new Vector2Int(posision.x - 1, posision.y);
+                                if (tileFactory.ValidRange(newPosition))
+                                {
+                                    if (!set.Contains(newPosition))
+                                    {
+                                        queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.West[UnityEngine.Random.Range(0, genesis.West.Count)]));
+                                        set.Add(newPosition);
+                                    }
+                                }
+                            }
+                            if (genesis.East.Count > 0)
+                            {
+                                Vector2Int newPosition = new Vector2Int(posision.x + 1, posision.y); if (tileFactory.ValidRange(newPosition))
+                                {
+                                    if (tileFactory.ValidRange(newPosition))
+                                    {
+                                        if (!set.Contains(newPosition))
+                                        {
+                                            queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.East[UnityEngine.Random.Range(0, genesis.East.Count)]));
+                                            set.Add(newPosition);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                         break;
                     default:
                         DebugUtility.Warn("unexpected generation state");

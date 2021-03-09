@@ -169,7 +169,7 @@
             return null;
         }
 
-        private bool ValidRange(Vector2Int position)
+        public bool ValidRange(Vector2Int position)
         {
             return position.x < board.GetLength(0) && position.y < board.GetLength(1) && position.x >= 0 && position.y >= 0;
         }
