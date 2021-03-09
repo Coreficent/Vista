@@ -2,16 +2,18 @@
 {
     using Coreficent.Tile;
     using Coreficent.Utility;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using UnityEngine;
 
     public class Board : ReinforcedBehavior
     {
+        [SerializeField]
+        private int radius;
+
         public List<TileBase> geneses;
 
-        public int size;
+
 
         private int index = 0;
         private List<Vector2Int> positions = new List<Vector2Int>();
@@ -20,16 +22,22 @@
 
         private Stack<Vector2Int> queue = new Stack<Vector2Int>();
 
+        public int Radius
+        {
+            get { return radius; }
+        }
+
+
         public void Start()
         {
-            for (var x = 0; x < size; ++x)
+            for (var x = 0; x < radius; ++x)
             {
-                for (var y = 0; y < size; ++y)
+                for (var y = 0; y < radius; ++y)
                 {
                     positions.Add(new Vector2Int(x, y));
                 }
             }
-            board = new TileBase[size, size];
+            board = new TileBase[radius, radius];
         }
 
         public bool HasNext()

@@ -10,6 +10,21 @@
 
     public class Main : ReinforcedBehavior
     {
+        [SerializeField]
+        private Land Land;
+
+
+
+
+
+
+
+
+
+
+
+
+
         public TileBase Tower1;
 
         public TileBase River1;
@@ -59,7 +74,7 @@
                         else
                         {
                             timeGap = 0.01f;
-                            towerCount = board.size;
+                            towerCount = board.Radius;
                             state = GenerationState.Tower;
                         }
                         break;
