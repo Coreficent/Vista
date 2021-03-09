@@ -18,7 +18,7 @@
 
         private Genesis[,] board;
 
-        private Queue<Vector2Int> queue = new Queue<Vector2Int>();
+        private Stack<Vector2Int> queue = new Stack<Vector2Int>();
 
         public void Start()
         {
@@ -108,16 +108,16 @@
         }
 
 
-        public Vector2Int Dequeue()
+        public Vector2Int Remove()
         {
-            return queue.Dequeue();
+            return queue.Pop();
         }
 
-        public void Enqueue(Vector2Int position)
+        public void Add(Vector2Int position)
         {
             if (ValidRange(position))
             {
-                queue.Enqueue(position);
+                queue.Push(position);
             }
         }
 

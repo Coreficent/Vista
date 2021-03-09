@@ -49,14 +49,14 @@
                         else
                         {
                             timeGap = 1.0f;
-                            tileFactory.Enqueue(tileFactory.Random());
+                            tileFactory.Add(tileFactory.Random());
                             state = GenerationState.Road;
                         }
                         break;
                     case GenerationState.Road:
                         if (tileFactory.QueueCount() > 0)
                         {
-                            Vector2Int position = tileFactory.Dequeue();
+                            Vector2Int position = tileFactory.Remove();
 
                             tileFactory.PlaceTile(position);
 
@@ -65,7 +65,7 @@
                             {
                                 if (!set.Contains(i))
                                 {
-                                    tileFactory.Enqueue(i);
+                                    tileFactory.Add(i);
                                 }
                             }
 
