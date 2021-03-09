@@ -49,20 +49,62 @@
             if (board[position.x, position.y])
             {
                 Destroy(board[position.x, position.y].gameObject);
-                board[position.x, position.y] = Instantiate(TileRiverCorner, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
+
+                Genesis north = GetTile(new Vector2Int(position.x, position.y + 1));
+                Genesis south = GetTile(new Vector2Int(position.x, position.y - 1));
+                Genesis west = GetTile(new Vector2Int(position.x - 1, position.y));
+                Genesis east = GetTile(new Vector2Int(position.x + 1, position.y));
+
+
+                //TODO need to use interception
+                DebugUtility.ToDo("need to use interception");
+                List<Genesis> validTiles = new List<Genesis>();
+                if (north)
+                {
+                    validTiles.AddRange(north.South);
+                }
+                if (south)
+                {
+                    validTiles.AddRange(south.North);
+                }
+                if (west)
+                {
+                    validTiles.AddRange(west.East);
+                }
+                if (east)
+                {
+                    validTiles.AddRange(east.West);
+                }
+
+
+
+                string r = "";
+                foreach (var i in validTiles)
+                {
+                    r += i;
+                }
+
+                DebugUtility.Log("validTilesrrrr", r);
+
+                if (validTiles.Count > 0)
+                {
+                    board[position.x, position.y] = Instantiate(validTiles[UnityEngine.Random.Range(0, validTiles.Count)], new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
+                }
+
+
             }
             else
             {
                 board[position.x, position.y] = Instantiate(Tile, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
             }
 
-            
+
             //board[position.x, position.y].transform.eulerAngles = new Vector3(0.0f, 90.0f * UnityEngine.Random.Range(0, 4), 0.0f);
         }
 
         public Vector2Int Random()
         {
-            return positions[UnityEngine.Random.Range(0, board.Length)];
+            return new Vector2Int(UnityEngine.Random.Range(0, board.GetLength(0)), UnityEngine.Random.Range(0, board.GetLength(1)));
         }
 
 
@@ -73,7 +115,7 @@
 
         public void Enqueue(Vector2Int position)
         {
-            if (position.x < board.GetLength(0) && position.y < board.GetLength(1) && position.x >= 0 && position.y >= 0)
+            if (ValidRange(position))
             {
                 queue.Enqueue(position);
             }
@@ -86,7 +128,16 @@
 
         public Genesis GetTile(Vector2Int position)
         {
-            return board[position.x, position.y];
+            if (ValidRange(position))
+            {
+                return board[position.x, position.y];
+            }
+            return null;
+        }
+
+        private bool ValidRange(Vector2Int position)
+        {
+            return position.x < board.GetLength(0) && position.y < board.GetLength(1) && position.x >= 0 && position.y >= 0;
         }
     }
 }

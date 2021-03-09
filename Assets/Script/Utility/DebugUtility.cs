@@ -1,6 +1,7 @@
 ﻿namespace Coreficent.Utility
 {
     using Coreficent.Setting;
+    using System.Collections;
     using UnityEngine;
     public class DebugUtility
     {

@@ -6,6 +6,7 @@
 
     public class TileRiverStraight : Genesis
     {
+
         public override List<Vector2Int> GetNeighbors(Vector2Int position)
         {
             List<Vector2Int> result = new List<Vector2Int>();

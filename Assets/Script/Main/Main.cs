@@ -18,6 +18,9 @@
 
         private readonly TimeController timeController = new TimeController();
 
+
+        private float timeGap = 0.01f;
+
         private enum GenerationState
         {
             Land,
@@ -33,7 +36,7 @@
 
         protected virtual void Update()
         {
-            if (timeController.TimePassed > 0.01f)
+            if (timeController.TimePassed > timeGap)
             {
                 switch (state)
                 {
@@ -45,6 +48,7 @@
                         }
                         else
                         {
+                            timeGap = 1.0f;
                             tileFactory.Enqueue(tileFactory.Random());
                             state = GenerationState.Road;
                         }
