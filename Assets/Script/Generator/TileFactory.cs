@@ -3,13 +3,12 @@
     using Coreficent.Utility;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
     public class TileFactory : ReinforcedBehavior
     {
-        public Genesis Tile;
-        public Genesis TileRiverStraight;
-        public Genesis TileRiverCorner;
+        public List<Genesis> geneses;
 
         public int size;
 
@@ -56,46 +55,67 @@
                 Genesis east = GetTile(new Vector2Int(position.x + 1, position.y));
 
 
-                //TODO need to use interception
-                DebugUtility.ToDo("need to use interception");
+                //north.transform.position += new Vector3(0, 1, 0);
+                //south.transform.position += new Vector3(0, 2, 0);
+                //west.transform.position += new Vector3(0, 3, 0);
+                //east.transform.position += new Vector3(0, 4, 0);
+
+                
                 List<Genesis> validTiles = new List<Genesis>();
                 if (north)
                 {
-                    validTiles.AddRange(north.South);
+                    validTiles.AddRange(north.North);
                 }
                 if (south)
                 {
-                    validTiles.AddRange(south.North);
+                    validTiles.AddRange(south.South);
                 }
                 if (west)
                 {
-                    validTiles.AddRange(west.East);
+                    validTiles.AddRange(west.West);
                 }
                 if (east)
                 {
-                    validTiles.AddRange(east.West);
+                    validTiles.AddRange(east.East);
                 }
 
 
-
-                string r = "";
-                foreach (var i in validTiles)
+                if (north)
                 {
-                    r += i;
+                    validTiles = validTiles.Intersect(north.North).ToList();
+                }
+                if (south)
+                {
+                    validTiles = validTiles.Intersect(south.South).ToList();
+                }
+                if (west)
+                {
+                    validTiles = validTiles.Intersect(west.West).ToList();
+                }
+                if (east)
+                {
+                    validTiles = validTiles.Intersect(east.East).ToList();
                 }
 
-                DebugUtility.Log("validTilesrrrr", r);
+
+
+
+                DebugUtility.Log("north", north.North);
+                DebugUtility.Log("south", south.South);
+                DebugUtility.Log("west", west.West);
+                DebugUtility.Log("east", east.East);
+
+
+                DebugUtility.Log("validTiles", validTiles);
 
                 if (validTiles.Count > 0)
                 {
                     board[position.x, position.y] = Instantiate(validTiles[UnityEngine.Random.Range(0, validTiles.Count)], new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
                 }
-
-
             }
             else
             {
-                board[position.x, position.y] = Instantiate(Tile, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
+                board[position.x, position.y] = Instantiate(geneses[0], new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
             }
 
 
@@ -132,6 +152,7 @@
             {
                 return board[position.x, position.y];
             }
+
             return null;
         }
 

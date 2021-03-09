@@ -27,5 +27,24 @@
         {
             return (Mathf.RoundToInt(transform.eulerAngles.y / 90.0f) + input) % 4;
         }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (!(other is Genesis))
+            {
+                return false;
+            }
+
+            return other.GetType().Name == GetType().Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
     }
 }

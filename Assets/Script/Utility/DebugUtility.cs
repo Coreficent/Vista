@@ -1,7 +1,10 @@
 ﻿namespace Coreficent.Utility
 {
+    using System.Linq;
     using Coreficent.Setting;
+    using System;
     using System.Collections;
+    using System.Collections.Generic;
     using UnityEngine;
     public class DebugUtility
     {
@@ -67,7 +70,25 @@
                 foreach (object i in variables)
                 {
                     message += _delimiter;
-                    message += i;
+
+                    if (i.GetType().GetInterface(nameof(ICollection)) != null)
+                    {
+                        message += "[";
+                        IEnumerable enumerable = (i as IEnumerable);
+
+                        foreach (var item in enumerable)
+                        {
+                            message += item;
+                            message += ",";
+                        }
+                        //message += string.Join(",", enumerable);
+
+                        message += "]";
+                    }
+                    else
+                    {
+                        message += i;
+                    }
                 }
 
                 switch (messageType)

@@ -72,16 +72,7 @@
                             set.Add(position);
 
 
-                            DebugUtility.Log("queue size", tileFactory.QueueCount());
-
-
-                            string r = "";
-                            foreach (var i in set)
-                            {
-                                r += i;
-                            }
-                            DebugUtility.Log("set size", r);
-
+                            // DebugUtility.Log("queue size", tileFactory.QueueCount());
                         }
                         break;
                     default:

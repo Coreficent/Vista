@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8528008411587022568}
   - component: {fileID: 1688041337545743247}
   m_Layer: 0
-  m_Name: tile_riverCorner
+  m_Name: TileRiverCorner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,3 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94dd52f8896fd746bb4cecf84b2f07c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  North: []
+  South:
+  - {fileID: 129600928667786536, guid: 2b92efc23f83d2142b648a9a6acb1c64, type: 3}
+  West: []
+  East: []
