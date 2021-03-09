@@ -9,6 +9,8 @@
 
     public class Main : ReinforcedBehavior
     {
+        public Genesis Tower1;
+
         [SerializeField]
         private TileFactory tileFactory;
 
@@ -19,11 +21,14 @@
         private readonly TimeController timeController = new TimeController();
 
 
+
+
         private float timeGap = 0.01f;
 
         private enum GenerationState
         {
             Land,
+            Tower,
             Road
         }
 
@@ -49,10 +54,22 @@
                         else
                         {
                             timeGap = 1.0f;
-                            tileFactory.Add(tileFactory.Random());
-                            state = GenerationState.Road;
+                            state = GenerationState.Tower;
                         }
                         break;
+
+                    case GenerationState.Tower:
+                        for (var i = 0; i < 100; ++i)
+                        {
+                            tileFactory.PlaceTile(tileFactory.Random(), Tower1);
+                        }
+
+                        timeGap = 1.0f;
+                        tileFactory.Add(tileFactory.Random());
+                        state = GenerationState.Road;
+
+                        break;
+
                     case GenerationState.Road:
                         if (tileFactory.QueueCount() > 0)
                         {

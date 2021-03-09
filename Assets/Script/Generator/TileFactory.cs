@@ -41,6 +41,14 @@
             return positions[index++];
         }
 
+        public void PlaceTile(Vector2Int position, Genesis tile)
+        {
+            Destroy(board[position.x, position.y].gameObject);
+            Genesis tower1 = Instantiate(tile);
+            tower1.transform.position = new Vector3(position.x, 0, position.y);
+        }
+
+
         public void PlaceTile(Vector2Int position)
         {
             Genesis type;
@@ -60,7 +68,7 @@
                 //west.transform.position += new Vector3(0, 3, 0);
                 //east.transform.position += new Vector3(0, 4, 0);
 
-                
+
                 List<Genesis> validTiles = new List<Genesis>();
                 if (north)
                 {
@@ -100,17 +108,21 @@
 
 
 
-                DebugUtility.Log("north", north.North);
-                DebugUtility.Log("south", south.South);
-                DebugUtility.Log("west", west.West);
-                DebugUtility.Log("east", east.East);
+                //DebugUtility.Log("north", north.North);
+                //DebugUtility.Log("south", south.South);
+                //DebugUtility.Log("west", west.West);
+                //DebugUtility.Log("east", east.East);
 
 
                 DebugUtility.Log("validTiles", validTiles);
 
                 if (validTiles.Count > 0)
                 {
-                    board[position.x, position.y] = Instantiate(validTiles[UnityEngine.Random.Range(0, validTiles.Count)], new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
+                    Genesis clone = validTiles[UnityEngine.Random.Range(0, validTiles.Count)];
+
+                    board[position.x, position.y] = Instantiate(clone);
+                    board[position.x, position.y].transform.position = new Vector3(position.x, 0.0f, position.y);
+                    board[position.x, position.y].transform.rotation = clone.transform.rotation;
                 }
             }
             else
