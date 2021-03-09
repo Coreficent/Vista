@@ -13,17 +13,9 @@
 
         public List<TileBase> geneses;
 
-
-
-        private int index = 0;
         private List<Vector2Int> positions = new List<Vector2Int>();
 
         private TileBase[,] board;
-
-        private Stack<Vector2Int> queue = new Stack<Vector2Int>();
-
-
-        
 
         public int Radius
         {
@@ -43,15 +35,6 @@
             board = new TileBase[radius, radius];
         }
 
-        public bool HasNext()
-        {
-            return index < positions.Count;
-        }
-
-        public Vector2Int Next()
-        {
-            return positions[index++];
-        }
 
         public void PlaceTile(Vector2Int position, TileBase tile)
         {
@@ -151,24 +134,6 @@
             return new Vector2Int(UnityEngine.Random.Range(0, board.GetLength(0)), UnityEngine.Random.Range(0, board.GetLength(1)));
         }
 
-
-        public Vector2Int Remove()
-        {
-            return queue.Pop();
-        }
-
-        public void Add(Vector2Int position)
-        {
-            if (ValidRange(position))
-            {
-                queue.Push(position);
-            }
-        }
-
-        public int QueueCount()
-        {
-            return queue.Count;
-        }
 
         public TileBase GetTile(Vector2Int position)
         {
