@@ -8,15 +8,10 @@
     {
         protected virtual void Start()
         {
-            BoxCollider collider = GetComponent<BoxCollider>();
-            collider.isTrigger = true;
 
-            Rigidbody rigidbody = GetComponent<Rigidbody>();
-            rigidbody.isKinematic = true;
-            rigidbody.useGravity = false;
         }
 
-        public virtual List<Genesis> Generate()
+        public virtual List<Genesis> Generate(Genesis genesis)
         {
             return new List<Genesis>();
         }

@@ -9,30 +9,26 @@
     public class Main : ReinforcedBehavior
     {
         [SerializeField]
-        private Genesis land;
+        private TileFactory tileFactory;
 
         private Queue<Genesis> landQueue = new Queue<Genesis>();
 
         private TimeController timeController = new TimeController();
 
+        private Board board = new Board(7);
+
         protected virtual void Start()
         {
-            DebugUtility.Log("start");
-            landQueue.Enqueue(land);
             timeController.Reset();
-            DebugUtility.Log("end");
         }
 
         protected virtual void Update()
         {
-            if (timeController.TimePassed > 2.0f)
+            if (timeController.TimePassed > 0.1f)
             {
-                if (landQueue.Count > 0)
+                if(board.HasNext())
                 {
-                    foreach (var genesis in landQueue.Dequeue().Generate())
-                    {
-                        landQueue.Enqueue(genesis);
-                    }
+                    tileFactory.NextTile(board.Next());
                 }
                 timeController.Reset();
             }
