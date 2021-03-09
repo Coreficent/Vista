@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5389394412826858419}
   - component: {fileID: 3363231956577021941}
   m_Layer: 0
-  m_Name: TileRiverStraightNS 1
+  m_Name: TileRiverStraightWE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,10 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2995302619efe469600c3da443847b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  North:
+  North: []
+  South: []
+  West:
   - {fileID: 3363231956577021941}
-  South:
+  East:
   - {fileID: 3363231956577021941}
-  - {fileID: 1688041337545743247, guid: 54f189e1f603a85419aad008b8c0d672, type: 3}
-  West: []
-  East: []
