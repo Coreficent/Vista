@@ -1,5 +1,6 @@
-﻿namespace Coreficent.Tile
+﻿namespace Coreficent.Generator
 {
+    using Coreficent.Tile;
     using Coreficent.Utility;
     using System;
     using System.Collections.Generic;

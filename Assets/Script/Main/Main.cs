@@ -1,6 +1,7 @@
 ﻿namespace Coreficent.Main
 {
     using Coreficent.Controller;
+    using Coreficent.Generator;
     using Coreficent.Tile;
     using Coreficent.Utility;
     using System;
@@ -166,7 +167,7 @@
 
                     case GenerationState.Vista:
 
-                        DebugUtility.Log("Vista");
+                        // DebugUtility.Log("Vista");
 
                         break;
 

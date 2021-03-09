@@ -1,4 +1,4 @@
-﻿namespace Coreficent.Tile
+﻿namespace Coreficent.Generator
 {
 
     using System.Collections;
