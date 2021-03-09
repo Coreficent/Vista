@@ -21,7 +21,7 @@
         private readonly TimeController timeController = new TimeController();
 
 
-
+        private int towerCount = 0;
 
         private float timeGap = 0.01f;
 
@@ -53,20 +53,25 @@
                         }
                         else
                         {
-                            timeGap = 1.0f;
+                            timeGap = 0.01f;
+                            towerCount = tileFactory.size;
                             state = GenerationState.Tower;
                         }
                         break;
 
                     case GenerationState.Tower:
-                        for (var i = 0; i < 100; ++i)
+                        if (towerCount > 0)
                         {
                             tileFactory.PlaceTile(tileFactory.Random(), Tower1);
                         }
+                        else
+                        {
+                            timeGap = 1.0f;
+                            tileFactory.Add(tileFactory.Random());
+                            state = GenerationState.Road;
+                        }
 
-                        timeGap = 1.0f;
-                        tileFactory.Add(tileFactory.Random());
-                        state = GenerationState.Road;
+                        --towerCount;
 
                         break;
 
