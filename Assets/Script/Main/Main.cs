@@ -33,7 +33,7 @@
 
         protected virtual void Update()
         {
-            if (timeController.TimePassed > 0.1f)
+            if (timeController.TimePassed > 1.0f)
             {
                 switch (state)
                 {
@@ -58,8 +58,11 @@
 
                             if (!set.Contains(position))
                             {
-                                tileFactory.Enqueue(new Vector2Int(position.x, position.y + 1));
-                                tileFactory.Enqueue(new Vector2Int(position.x, position.y - 1));
+                                foreach(var i in tileFactory.GetTile(position).GetNeighbors(position))
+                                {
+                                    tileFactory.Enqueue(i);
+                                }
+
                                 set.Add(position);
                             }
 

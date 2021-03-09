@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8494109440056023553}
   - component: {fileID: 4778029060135310756}
   - component: {fileID: 7325684599970537838}
-  - component: {fileID: 4846035783756131801}
+  - component: {fileID: 129600928667786536}
   m_Layer: 0
-  m_Name: tile_riverStraight
+  m_Name: TileRiverStraight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4846035783756131801
+--- !u!114 &129600928667786536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,6 +91,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9127374933639594171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d331932fed15d4f8b000473cb945dd, type: 3}
+  m_Script: {fileID: 11500000, guid: cb2995302619efe469600c3da443847b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -49,6 +49,7 @@
             }
 
             board[position.x, position.y] = Instantiate(type, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
+            board[position.x, position.y].transform.eulerAngles = new Vector3(0.0f, 90.0f * UnityEngine.Random.Range(0, 4), 0.0f);
         }
 
         public Vector2Int Random()
@@ -73,6 +74,11 @@
         public int QueueCount()
         {
             return queue.Count;
+        }
+
+        public Genesis GetTile(Vector2Int position)
+        {
+            return board[position.x, position.y];
         }
     }
 }

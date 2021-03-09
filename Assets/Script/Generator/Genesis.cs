@@ -6,24 +6,21 @@
 
     public class Genesis : ReinforcedBehavior
     {
+        protected List<Vector2Int> neighbors = new List<Vector2Int> { new Vector2Int(0, 1), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(-1, 0) };
+
         protected virtual void Start()
         {
 
         }
 
-        public virtual List<Genesis> Generate(Genesis genesis)
+        public virtual List<Vector2Int> GetNeighbors(Vector2Int position)
         {
-            return new List<Genesis>();
+            return new List<Vector2Int>();
         }
 
-        protected virtual IEnumerable<Genesis> Create(Genesis genesis, Vector3 position)
+        protected int GetDirectionIndex(int input)
         {
-            if (!Physics.CheckBox(transform.position + position, new Vector3(0.25f, 0.25f, 0.25f)))
-            {
-                Genesis clone = Instantiate(genesis);
-                clone.transform.position += position;
-                yield return clone;
-            }
+            return (Mathf.RoundToInt(transform.eulerAngles.y / 90.0f) + input) % 4;
         }
     }
 }
