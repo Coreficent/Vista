@@ -10,23 +10,7 @@
 
     public class Main : ReinforcedBehavior
     {
-        [SerializeField]
-        private Land Land;
-
-
-
-
-
-
-
-
-
-
-
-
-
         public TileBase Tower1;
-
         public TileBase River1;
 
         [SerializeField]
@@ -45,6 +29,11 @@
 
         private Queue<Tuple<Vector2Int, TileBase>> queue = new Queue<Tuple<Vector2Int, TileBase>>();
 
+
+        private Land land = new Land();
+
+
+
         private enum GenerationState
         {
             Land,
@@ -57,6 +46,7 @@
 
         protected virtual void Start()
         {
+            land.Radius = board.Radius;
             timeController.Reset();
         }
 
@@ -67,9 +57,9 @@
                 switch (state)
                 {
                     case GenerationState.Land:
-                        if (board.HasNext())
+                        if (land.HasNext())
                         {
-                            board.RepairTile(board.Next());
+                            board.RepairTile(land.Next());
                         }
                         else
                         {
@@ -86,7 +76,7 @@
                         }
                         else
                         {
-                            timeGap = 0.25f;
+                            timeGap = 0.01f;
                             Vector2Int position = board.Random();
                             queue.Enqueue(new Tuple<Vector2Int, TileBase>(position, River1)); ;
                             set.Add(position);
