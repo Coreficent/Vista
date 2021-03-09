@@ -12,8 +12,9 @@
         [SerializeField]
         private TileFactory tileFactory;
 
-        private Queue<Tuple<int, int>> queue = new Queue<Tuple<int, int>>();
-        private HashSet<Tuple<int, int>> set = new HashSet<Tuple<int, int>>();
+        private HashSet<Vector2Int> set = new HashSet<Vector2Int>();
+
+
 
         private readonly TimeController timeController = new TimeController();
 
@@ -44,23 +45,33 @@
                         }
                         else
                         {
-                            queue.Enqueue(tileFactory.Random());
+                            tileFactory.Enqueue(tileFactory.Random());
                             state = GenerationState.Road;
                         }
                         break;
                     case GenerationState.Road:
-                        if (queue.Count > 0)
+                        if (tileFactory.QueueCount() > 0)
                         {
-                            Tuple<int, int> position = queue.Dequeue();
+                            Vector2Int position = tileFactory.Dequeue();
 
                             tileFactory.NextTile(tileFactory.TileRiverStraight, position);
 
                             if (!set.Contains(position))
                             {
-                                queue.Enqueue(new Tuple<int, int>(position.Item1, position.Item2 + 1));
-                                queue.Enqueue(new Tuple<int, int>(position.Item1, position.Item2 - 1));
+                                tileFactory.Enqueue(new Vector2Int(position.x, position.y + 1));
+                                tileFactory.Enqueue(new Vector2Int(position.x, position.y - 1));
                                 set.Add(position);
                             }
+
+                            DebugUtility.Log("queue size", tileFactory.QueueCount());
+
+
+                            string r = "";
+                            foreach (var i in set)
+                            {
+                                r += i;
+                            }
+                            DebugUtility.Log("set size", r);
 
                         }
                         break;

@@ -13,9 +13,11 @@
         public int size;
 
         private int index = 0;
-        private List<Tuple<int, int>> positions = new List<Tuple<int, int>>();
+        private List<Vector2Int> positions = new List<Vector2Int>();
 
         private Genesis[,] board;
+
+        private Queue<Vector2Int> queue = new Queue<Vector2Int>();
 
         public void Start()
         {
@@ -23,7 +25,7 @@
             {
                 for (var y = 0; y < size; ++y)
                 {
-                    positions.Add(new Tuple<int, int>(x, y));
+                    positions.Add(new Vector2Int(x, y));
                 }
             }
             board = new Genesis[size, size];
@@ -34,27 +36,43 @@
             return index < positions.Count;
         }
 
-        public Tuple<int, int> Next()
+        public Vector2Int Next()
         {
             return positions[index++];
         }
 
-        public void NextTile(Genesis type, Tuple<int, int> position)
+        public void NextTile(Genesis type, Vector2Int position)
         {
-            if (position.Item1 < board.GetLength(0) && position.Item2 < board.GetLength(1) && position.Item1 > 0 && position.Item2 > 0)
+            if (board[position.x, position.y])
             {
-                if (board[position.Item1, position.Item2])
-                {
-                    Destroy(board[position.Item1, position.Item2].gameObject);
-                }
+                Destroy(board[position.x, position.y].gameObject);
+            }
 
-                board[position.Item1, position.Item2] = Instantiate(type, new Vector3(position.Item1, 0.0f, position.Item2), Quaternion.identity);
+            board[position.x, position.y] = Instantiate(type, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
+        }
+
+        public Vector2Int Random()
+        {
+            return positions[UnityEngine.Random.Range(0, board.Length)];
+        }
+
+
+        public Vector2Int Dequeue()
+        {
+            return queue.Dequeue();
+        }
+
+        public void Enqueue(Vector2Int position)
+        {
+            if (position.x < board.GetLength(0) && position.y < board.GetLength(1) && position.x >= 0 && position.y >= 0)
+            {
+                queue.Enqueue(position);
             }
         }
 
-        public Tuple<int, int> Random()
+        public int QueueCount()
         {
-            return positions[UnityEngine.Random.Range(0, board.Length)];
+            return queue.Count;
         }
     }
 }
