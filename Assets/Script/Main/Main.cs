@@ -33,7 +33,7 @@
 
         protected virtual void Update()
         {
-            if (timeController.TimePassed > 1.0f)
+            if (timeController.TimePassed > 0.01f)
             {
                 switch (state)
                 {
@@ -41,7 +41,7 @@
 
                         if (tileFactory.HasNext())
                         {
-                            tileFactory.NextTile(tileFactory.Tile, tileFactory.Next());
+                            tileFactory.PlaceTile(tileFactory.Next());
                         }
                         else
                         {
@@ -54,11 +54,11 @@
                         {
                             Vector2Int position = tileFactory.Dequeue();
 
-                            tileFactory.NextTile(tileFactory.TileRiverStraight, position);
+                            tileFactory.PlaceTile(position);
 
                             if (!set.Contains(position))
                             {
-                                foreach(var i in tileFactory.GetTile(position).GetNeighbors(position))
+                                foreach (var i in tileFactory.GetTile(position).GetNeighbors(position))
                                 {
                                     tileFactory.Enqueue(i);
                                 }

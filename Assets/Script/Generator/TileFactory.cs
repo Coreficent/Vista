@@ -9,6 +9,7 @@
     {
         public Genesis Tile;
         public Genesis TileRiverStraight;
+        public Genesis TileRiverCorner;
 
         public int size;
 
@@ -41,15 +42,22 @@
             return positions[index++];
         }
 
-        public void NextTile(Genesis type, Vector2Int position)
+        public void PlaceTile(Vector2Int position)
         {
+            Genesis type;
+
             if (board[position.x, position.y])
             {
                 Destroy(board[position.x, position.y].gameObject);
+                board[position.x, position.y] = Instantiate(TileRiverCorner, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
+            }
+            else
+            {
+                board[position.x, position.y] = Instantiate(Tile, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
             }
 
-            board[position.x, position.y] = Instantiate(type, new Vector3(position.x, 0.0f, position.y), Quaternion.identity);
-            board[position.x, position.y].transform.eulerAngles = new Vector3(0.0f, 90.0f * UnityEngine.Random.Range(0, 4), 0.0f);
+            
+            //board[position.x, position.y].transform.eulerAngles = new Vector3(0.0f, 90.0f * UnityEngine.Random.Range(0, 4), 0.0f);
         }
 
         public Vector2Int Random()
