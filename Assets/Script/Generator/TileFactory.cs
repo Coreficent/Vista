@@ -8,14 +8,14 @@
 
     public class TileFactory : ReinforcedBehavior
     {
-        public List<Genesis> geneses;
+        public List<TileBase> geneses;
 
         public int size;
 
         private int index = 0;
         private List<Vector2Int> positions = new List<Vector2Int>();
 
-        private Genesis[,] board;
+        private TileBase[,] board;
 
         private Stack<Vector2Int> queue = new Stack<Vector2Int>();
 
@@ -28,7 +28,7 @@
                     positions.Add(new Vector2Int(x, y));
                 }
             }
-            board = new Genesis[size, size];
+            board = new TileBase[size, size];
         }
 
         public bool HasNext()
@@ -41,10 +41,10 @@
             return positions[index++];
         }
 
-        public void PlaceTile(Vector2Int position, Genesis tile)
+        public void PlaceTile(Vector2Int position, TileBase tile)
         {
             Destroy(board[position.x, position.y].gameObject);
-            Genesis tower1 = Instantiate(tile);
+            TileBase tower1 = Instantiate(tile);
             tower1.transform.position = new Vector3(position.x, 0, position.y);
             board[position.x, position.y] = tower1;
         }
@@ -52,16 +52,16 @@
 
         public void RepairTile(Vector2Int position)
         {
-            Genesis type;
+            TileBase type;
 
             if (board[position.x, position.y])
             {
                 Destroy(board[position.x, position.y].gameObject);
 
-                Genesis north = GetTile(new Vector2Int(position.x, position.y + 1));
-                Genesis south = GetTile(new Vector2Int(position.x, position.y - 1));
-                Genesis west = GetTile(new Vector2Int(position.x - 1, position.y));
-                Genesis east = GetTile(new Vector2Int(position.x + 1, position.y));
+                TileBase north = GetTile(new Vector2Int(position.x, position.y + 1));
+                TileBase south = GetTile(new Vector2Int(position.x, position.y - 1));
+                TileBase west = GetTile(new Vector2Int(position.x - 1, position.y));
+                TileBase east = GetTile(new Vector2Int(position.x + 1, position.y));
 
 
                 //north.transform.position += new Vector3(0, 1, 0);
@@ -70,7 +70,7 @@
                 //east.transform.position += new Vector3(0, 4, 0);
 
 
-                List<Genesis> validTiles = new List<Genesis>();
+                List<TileBase> validTiles = new List<TileBase>();
                 if (north)
                 {
                     validTiles.AddRange(north.North);
@@ -119,7 +119,7 @@
 
                 if (validTiles.Count > 0)
                 {
-                    Genesis clone = validTiles[UnityEngine.Random.Range(0, validTiles.Count)];
+                    TileBase clone = validTiles[UnityEngine.Random.Range(0, validTiles.Count)];
 
                     board[position.x, position.y] = Instantiate(clone);
                     board[position.x, position.y].transform.position = new Vector3(position.x, 0.0f, position.y);
@@ -159,7 +159,7 @@
             return queue.Count;
         }
 
-        public Genesis GetTile(Vector2Int position)
+        public TileBase GetTile(Vector2Int position)
         {
             if (ValidRange(position))
             {

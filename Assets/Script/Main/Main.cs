@@ -9,9 +9,9 @@
 
     public class Main : ReinforcedBehavior
     {
-        public Genesis Tower1;
+        public TileBase Tower1;
 
-        public Genesis River1;
+        public TileBase River1;
 
         [SerializeField]
         private TileFactory tileFactory;
@@ -27,7 +27,7 @@
 
         private float timeGap = 0.01f;
 
-        private Queue<Tuple<Vector2Int, Genesis>> queue = new Queue<Tuple<Vector2Int, Genesis>>();
+        private Queue<Tuple<Vector2Int, TileBase>> queue = new Queue<Tuple<Vector2Int, TileBase>>();
 
         private enum GenerationState
         {
@@ -73,7 +73,7 @@
                         {
                             timeGap = 0.25f;
                             Vector2Int position = tileFactory.Random();
-                            queue.Enqueue(new Tuple<Vector2Int, Genesis>(position, River1)); ;
+                            queue.Enqueue(new Tuple<Vector2Int, TileBase>(position, River1)); ;
                             set.Add(position);
                             state = GenerationState.River;
                         }
@@ -88,7 +88,7 @@
                         {
                             var rootedGenesis = queue.Dequeue();
                             Vector2Int position = rootedGenesis.Item1;
-                            Genesis genesis = rootedGenesis.Item2;
+                            TileBase genesis = rootedGenesis.Item2;
 
                             tileFactory.PlaceTile(position, genesis);
 
@@ -101,7 +101,7 @@
                                 {
                                     if (!set.Contains(newPosition))
                                     {
-                                        queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.North[UnityEngine.Random.Range(0, genesis.North.Count)]));
+                                        queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.North[UnityEngine.Random.Range(0, genesis.North.Count)]));
                                         set.Add(newPosition);
                                     }
                                 }
@@ -117,7 +117,7 @@
                                     {
                                         if (!set.Contains(newPosition))
                                         {
-                                            queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.East[UnityEngine.Random.Range(0, genesis.East.Count)]));
+                                            queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.East[UnityEngine.Random.Range(0, genesis.East.Count)]));
                                             set.Add(newPosition);
                                         }
                                     }
@@ -133,7 +133,7 @@
                                 {
                                     if (!set.Contains(newPosition))
                                     {
-                                        queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.South[UnityEngine.Random.Range(0, genesis.South.Count)]));
+                                        queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.South[UnityEngine.Random.Range(0, genesis.South.Count)]));
                                         set.Add(newPosition);
                                     }
                                 }
@@ -150,7 +150,7 @@
                                 {
                                     if (!set.Contains(newPosition))
                                     {
-                                        queue.Enqueue(new Tuple<Vector2Int, Genesis>(newPosition, genesis.West[UnityEngine.Random.Range(0, genesis.West.Count)]));
+                                        queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.West[UnityEngine.Random.Range(0, genesis.West.Count)]));
                                         set.Add(newPosition);
                                     }
                                 }

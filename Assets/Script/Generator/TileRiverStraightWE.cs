@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class TileRiverStraightWE : Genesis
+    public class TileRiverStraightWE : TileBase
     {
         public override List<Vector2Int> GetNeighbors(Vector2Int position)
         {

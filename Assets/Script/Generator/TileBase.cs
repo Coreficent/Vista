@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class Genesis : ReinforcedBehavior
+    public class TileBase : ReinforcedBehavior
     {
-        public List<Genesis> North;
-        public List<Genesis> South;
-        public List<Genesis> West;
-        public List<Genesis> East;
+        public List<TileBase> North;
+        public List<TileBase> South;
+        public List<TileBase> West;
+        public List<TileBase> East;
 
         protected List<Vector2Int> neighbors = new List<Vector2Int> { new Vector2Int(0, 1), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(-1, 0) };
 
@@ -34,7 +34,7 @@
             {
                 return false;
             }
-            if (!(other is Genesis))
+            if (!(other is TileBase))
             {
                 return false;
             }

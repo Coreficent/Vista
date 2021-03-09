@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using UnityEngine;
-    public class Grass : Genesis
+    public class Grass : TileBase
     {
         
     }
