@@ -7,7 +7,7 @@
     using System.Linq;
     using UnityEngine;
 
-    public class TileFactory : ReinforcedBehavior
+    public class Board : ReinforcedBehavior
     {
         public List<TileBase> geneses;
 

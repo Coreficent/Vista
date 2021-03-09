@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tower1: {fileID: 8102924231879215983, guid: 12f64f93692f0da459284a8c074758f3, type: 3}
   River1: {fileID: 129600928667786536, guid: 2b92efc23f83d2142b648a9a6acb1c64, type: 3}
-  tileFactory: {fileID: 513397987}
+  board: {fileID: 513397987}
 --- !u!4 &432189074
 Transform:
   m_ObjectHideFlags: 0

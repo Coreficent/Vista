@@ -15,7 +15,7 @@
         public TileBase River1;
 
         [SerializeField]
-        private TileFactory tileFactory;
+        private Board board;
 
         private HashSet<Vector2Int> set = new HashSet<Vector2Int>();
 
@@ -52,15 +52,14 @@
                 switch (state)
                 {
                     case GenerationState.Land:
-
-                        if (tileFactory.HasNext())
+                        if (board.HasNext())
                         {
-                            tileFactory.RepairTile(tileFactory.Next());
+                            board.RepairTile(board.Next());
                         }
                         else
                         {
                             timeGap = 0.01f;
-                            towerCount = tileFactory.size;
+                            towerCount = board.size;
                             state = GenerationState.Tower;
                         }
                         break;
@@ -68,12 +67,12 @@
                     case GenerationState.Tower:
                         if (towerCount > 0)
                         {
-                            tileFactory.PlaceTile(tileFactory.Random(), Tower1);
+                            board.PlaceTile(board.Random(), Tower1);
                         }
                         else
                         {
                             timeGap = 0.25f;
-                            Vector2Int position = tileFactory.Random();
+                            Vector2Int position = board.Random();
                             queue.Enqueue(new Tuple<Vector2Int, TileBase>(position, River1)); ;
                             set.Add(position);
                             state = GenerationState.River;
@@ -91,14 +90,14 @@
                             Vector2Int position = rootedGenesis.Item1;
                             TileBase genesis = rootedGenesis.Item2;
 
-                            tileFactory.PlaceTile(position, genesis);
+                            board.PlaceTile(position, genesis);
 
                             if (genesis.North.Count > 0)
                             {
                                 float offset = 1.0f;
                                 float angleOffset = 0.0f;
                                 Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
-                                if (tileFactory.ValidRange(newPosition))
+                                if (board.ValidRange(newPosition))
                                 {
                                     if (!set.Contains(newPosition))
                                     {
@@ -114,7 +113,7 @@
                                 float angleOffset = 90.0f;
                                 Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
                                 {
-                                    if (tileFactory.ValidRange(newPosition))
+                                    if (board.ValidRange(newPosition))
                                     {
                                         if (!set.Contains(newPosition))
                                         {
@@ -130,7 +129,7 @@
                                 float angleOffset = 180.0f;
                                 Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
 
-                                if (tileFactory.ValidRange(newPosition))
+                                if (board.ValidRange(newPosition))
                                 {
                                     if (!set.Contains(newPosition))
                                     {
@@ -147,7 +146,7 @@
 
                                 DebugUtility.Bug("go west", newPosition);
 
-                                if (tileFactory.ValidRange(newPosition))
+                                if (board.ValidRange(newPosition))
                                 {
                                     if (!set.Contains(newPosition))
                                     {
