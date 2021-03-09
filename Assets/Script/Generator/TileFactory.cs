@@ -46,10 +46,11 @@
             Destroy(board[position.x, position.y].gameObject);
             Genesis tower1 = Instantiate(tile);
             tower1.transform.position = new Vector3(position.x, 0, position.y);
+            board[position.x, position.y] = tower1;
         }
 
 
-        public void PlaceTile(Vector2Int position)
+        public void RepairTile(Vector2Int position)
         {
             Genesis type;
 

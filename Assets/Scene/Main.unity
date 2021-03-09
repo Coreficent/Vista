@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a561f428d3f824149aa38f47a89f8c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tower1: {fileID: 8102924231879215983, guid: 12f64f93692f0da459284a8c074758f3, type: 3}
+  River1: {fileID: 0}
   tileFactory: {fileID: 513397987}
 --- !u!4 &432189074
 Transform:

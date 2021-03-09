@@ -11,6 +11,8 @@
     {
         public Genesis Tower1;
 
+        public Genesis River1;
+
         [SerializeField]
         private TileFactory tileFactory;
 
@@ -49,7 +51,7 @@
 
                         if (tileFactory.HasNext())
                         {
-                            tileFactory.PlaceTile(tileFactory.Next());
+                            tileFactory.RepairTile(tileFactory.Next());
                         }
                         else
                         {
@@ -67,7 +69,6 @@
                         else
                         {
                             timeGap = 1.0f;
-                            tileFactory.Add(tileFactory.Random());
                             state = GenerationState.Road;
                         }
 
@@ -76,26 +77,7 @@
                         break;
 
                     case GenerationState.Road:
-                        if (tileFactory.QueueCount() > 0)
-                        {
-                            Vector2Int position = tileFactory.Remove();
-
-                            tileFactory.PlaceTile(position);
-
-
-                            foreach (var i in tileFactory.GetTile(position).GetNeighbors(position))
-                            {
-                                if (!set.Contains(i))
-                                {
-                                    tileFactory.Add(i);
-                                }
-                            }
-
-                            set.Add(position);
-
-
-                            // DebugUtility.Log("queue size", tileFactory.QueueCount());
-                        }
+                        tileFactory.RepairTile(tileFactory.Random());
                         break;
                     default:
                         DebugUtility.Warn("unexpected generation state");
