@@ -41,12 +41,15 @@
 
         public void NextTile(Genesis type, Tuple<int, int> position)
         {
-            if (board[position.Item1, position.Item2])
+            if (position.Item1 < board.GetLength(0) && position.Item2 < board.GetLength(1) && position.Item1 > 0 && position.Item2 > 0)
             {
-                Destroy(board[position.Item1, position.Item2].gameObject);
-            }
+                if (board[position.Item1, position.Item2])
+                {
+                    Destroy(board[position.Item1, position.Item2].gameObject);
+                }
 
-            board[position.Item1, position.Item2] = Instantiate(type, new Vector3(position.Item1, 0.0f, position.Item2), Quaternion.identity);
+                board[position.Item1, position.Item2] = Instantiate(type, new Vector3(position.Item1, 0.0f, position.Item2), Quaternion.identity);
+            }
         }
 
         public Tuple<int, int> Random()

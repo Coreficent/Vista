@@ -12,7 +12,8 @@
         [SerializeField]
         private TileFactory tileFactory;
 
-        private Queue<Tuple<int, int>> tileQueue = new Queue<Tuple<int, int>>();
+        private Queue<Tuple<int, int>> queue = new Queue<Tuple<int, int>>();
+        private HashSet<Tuple<int, int>> set = new HashSet<Tuple<int, int>>();
 
         private readonly TimeController timeController = new TimeController();
 
@@ -43,12 +44,25 @@
                         }
                         else
                         {
-                            tileQueue.Enqueue(tileFactory.Random());
+                            queue.Enqueue(tileFactory.Random());
                             state = GenerationState.Road;
                         }
                         break;
                     case GenerationState.Road:
-                        
+                        if (queue.Count > 0)
+                        {
+                            Tuple<int, int> position = queue.Dequeue();
+
+                            tileFactory.NextTile(tileFactory.TileRiverStraight, position);
+
+                            if (!set.Contains(position))
+                            {
+                                queue.Enqueue(new Tuple<int, int>(position.Item1, position.Item2 + 1));
+                                queue.Enqueue(new Tuple<int, int>(position.Item1, position.Item2 - 1));
+                                set.Add(position);
+                            }
+
+                        }
                         break;
                     default:
                         DebugUtility.Warn("unexpected generation state");
