@@ -10,11 +10,19 @@
 
     public class Main : ReinforcedBehavior
     {
-        public TileBase Tower1;
-        public TileBase River1;
+        
 
         [SerializeField]
         private Board board;
+
+        [SerializeField]
+        private Factory factory;
+
+
+
+
+        public TileBase Tower1;
+        public TileBase River1;
 
         private HashSet<Vector2Int> set = new HashSet<Vector2Int>();
 
@@ -68,7 +76,6 @@
                             state = GenerationState.Tower;
                         }
                         break;
-
                     case GenerationState.Tower:
                         if (towerCount > 0)
                         {

@@ -22,6 +22,9 @@
 
         private Stack<Vector2Int> queue = new Stack<Vector2Int>();
 
+
+        
+
         public int Radius
         {
             get { return radius; }

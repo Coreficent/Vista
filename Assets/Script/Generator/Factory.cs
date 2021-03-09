@@ -1,22 +1,25 @@
 ﻿namespace Coreficent.Generator
 {
-
+    using Coreficent.Tile;
+    using Coreficent.Utility;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class Factory : MonoBehaviour
+    public class Factory : ReinforcedBehavior
     {
-        // Start is called before the first frame update
-        void Start()
+
+
+
+        private Dictionary<string, TileBase> tiles = new Dictionary<string, TileBase>();
+
+        public TileBase Create(string name)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            if (tiles.ContainsKey(name))
+            {
+                DebugUtility.Warn("Trying to access undefined tile", name);
+            }
+            return tiles[name];
         }
     }
 }
