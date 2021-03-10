@@ -9,8 +9,8 @@
     public class Rectifier : IIterator
     {
 
-        private Board board;
-        private Factory factory;
+        private readonly Board board;
+        private readonly Factory factory;
 
         private List<Vector3> positions = new List<Vector3>();
         private int currentIndex = 0;
@@ -56,18 +56,22 @@
             TileBase south = board.GetSouthTile(position);
             TileBase east = board.GetEastTile(position);
 
-            Rectify(middle, north, west, south, east, bridge, factory.Bridge);
+            Rectify(middle, north, west, south, east, factory.Bridge, bridge);
         }
 
-        private void Rectify(TileBase middle, TileBase north, TileBase west, TileBase south, TileBase east, Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> condition, TileBase rectification)
+        private void Rectify(TileBase middle, TileBase north, TileBase west, TileBase south, TileBase east, TileBase rectification, Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> condition)
         {
-            Rectify(middle, north, west, south, east, 0.0f, condition, rectification);
-            Rectify(middle, west, south, east, north, 90.0f, condition, rectification);
-            Rectify(middle, south, east, north, west, 180.0f, condition, rectification);
-            Rectify(middle, east, north, west, south, 270.0f, condition, rectification);
+            Rectify(middle, west, south, east, north, -270.0f, rectification, condition);
+            Rectify(middle, south, east, north, west, -180.0f, rectification, condition);
+            Rectify(middle, east, north, west, south, -90.0f, rectification, condition);
+            Rectify(middle, north, west, south, east, 360.0f, rectification, condition);
+            Rectify(middle, north, west, south, east, 0.0f, rectification, condition);
+            Rectify(middle, west, south, east, north, 90.0f, rectification, condition);
+            Rectify(middle, south, east, north, west, 180.0f, rectification, condition);
+            Rectify(middle, east, north, west, south, 270.0f, rectification, condition);
         }
 
-        private void Rectify(TileBase middle, TileBase north, TileBase west, TileBase south, TileBase east, float angle, Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> condition, TileBase rectification)
+        private void Rectify(TileBase middle, TileBase north, TileBase west, TileBase south, TileBase east, float angle, TileBase rectification, Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> condition)
         {
             if (condition(middle, north, west, south, east, angle))
             {
