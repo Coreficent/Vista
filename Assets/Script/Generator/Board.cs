@@ -9,9 +9,6 @@
     public class Board : ReinforcedBehavior
     {
         [SerializeField]
-        private TileBase empty;
-
-        [SerializeField]
         private int radius;
 
         private Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
@@ -154,8 +151,7 @@
 
         public bool ValidPosition(Vector3 position)
         {
-            empty.transform.position = position;
-            return map.ContainsKey(empty.HashName);
+            return map.ContainsKey(TileBase.HashNameFromPosition(position));
         }
     }
 }

@@ -7,6 +7,19 @@
     public class TileBase : ReinforcedBehavior
     {
 
+        public static string HashNameFromPosition(Vector3 position)
+        {
+            string result = "";
+            string delimiter = ":";
+
+            result += Mathf.RoundToInt(position.x * 10.0f);
+            result += delimiter;
+            result += Mathf.RoundToInt(position.y * 10.0f);
+            result += delimiter;
+            result += Mathf.RoundToInt(position.z * 10.0f);
+
+            return result;
+        }
         public virtual List<Neighbor> Neighbors
         {
             get
@@ -19,16 +32,7 @@
         {
             get
             {
-                string result = "";
-                string delimiter = ":";
-
-                result += Mathf.RoundToInt(transform.position.x * 10.0f);
-                result += delimiter;
-                result += Mathf.RoundToInt(transform.position.y * 10.0f);
-                result += delimiter;
-                result += Mathf.RoundToInt(transform.position.z * 10.0f);
-
-                return result;
+                return HashNameFromPosition(transform.position);
             }
         }
 

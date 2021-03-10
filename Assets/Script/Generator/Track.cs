@@ -31,7 +31,7 @@
         public void Next()
         {
             TileBase parent = queue.Dequeue();
-            set.Add(parent.HashName);
+            set.Add(TileBase.HashNameFromPosition(parent.transform.position));
 
             foreach (Neighbor i in parent.Neighbors)
             {
@@ -40,11 +40,14 @@
 
                 if (board.ValidPosition(position))
                 {
-                    TileBase tileBase = board.Replace(position, factory.Create(i.Tile));
-                    //TODO
+                    if (!set.Contains(TileBase.HashNameFromPosition(position)))
+                    {
+                        TileBase tileBase = board.Replace(position, factory.Create(i.Tile));
+                        //TODO
 
-                    DebugUtility.ToDo("set rotation");
-                    queue.Enqueue(tileBase);
+                        DebugUtility.ToDo("set rotation");
+                        queue.Enqueue(tileBase);
+                    }
                 }
             }
             // put neighbor in
