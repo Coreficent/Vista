@@ -40,7 +40,7 @@
         protected virtual void Start()
         {
             land = new Land(); ;
-            doodad = new Doodad(board);
+            doodad = new Doodad(board, factory);
             track = new Track(board);
             land.Radius = board.Radius;
             doodad.Radius = board.Radius;
@@ -67,7 +67,8 @@
                     case GenerationState.Doodad:
                         if (doodad.HasNext())
                         {
-                            board.Replace(doodad.Next(), factory.Create(Factory.Tower));
+                            //board.Replace(doodad.Next(), factory.Create(Factory.Tower));
+                            doodad.Next();
                         }
                         else
                         {

@@ -8,10 +8,12 @@
         private int doodadCount = 0;
 
         private Board board;
+        private Factory factory;
 
-        public Doodad(Board board)
+        public Doodad(Board board, Factory factory)
         {
             this.board = board;
+            this.factory = factory;
         }
 
         public int Radius
@@ -29,10 +31,10 @@
             return doodadCount > 0;
         }
 
-        public Vector3 Next()
+        public void Next()
         {
             --doodadCount;
-            return board.RandomPosition();
+            board.Replace(board.RandomPosition(), factory.Create(Factory.Tower));
         }
     }
 }
