@@ -64,13 +64,13 @@
                 switch (state)
                 {
                     case GenerationState.Land:
-                        if (!Iterate(land))
+                        if (!Iterate(land, 1000))
                         {
                             state = GenerationState.Doodad;
                         }
                         break;
                     case GenerationState.Doodad:
-                        if (!Iterate(doodad))
+                        if (!Iterate(doodad, 1000))
                         {
                             Vector3 position = board.RandomPosition();
                             TileBase riverTile = board.Replace(position, factory.Create(Factory.RiverStraight));
@@ -81,7 +81,7 @@
                         break;
 
                     case GenerationState.River:
-                        if (!Iterate(river))
+                        if (!Iterate(river, 1))
                         {
                             Vector3 position = board.RandomPosition();
                             TileBase roadTile = board.Replace(position, factory.Create(Factory.RiverStraight));
@@ -91,11 +91,10 @@
                         }
                         break;
                     case GenerationState.Road:
-                        if (!Iterate(road))
+                        if (!Iterate(road, 1))
                         {
                             state = GenerationState.Vista;
                         }
-
                         break;
 
                     case GenerationState.Vista:
@@ -113,17 +112,27 @@
             }
         }
 
-        private bool Iterate(IIterator iterator)
+        private bool Iterate(IIterator iterator, int iterationPerSecond)
         {
-            if (iterator.HasNext())
+            int iteration = Mathf.RoundToInt(iterationPerSecond * Time.deltaTime);
+
+            if (iteration < 1)
             {
-                iterator.Next();
-                return true;
+                ++iteration;
             }
-            else
+
+            for (var i = 0; i < iteration; ++i)
             {
-                return false;
+                if (iterator.HasNext())
+                {
+                    iterator.Next();
+                }
+                else
+                {
+                    return false;
+                }
             }
+            return true;
         }
     }
 }
