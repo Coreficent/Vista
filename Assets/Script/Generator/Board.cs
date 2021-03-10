@@ -118,10 +118,7 @@
         //    //board[position.x, position.y].transform.eulerAngles = new Vector3(0.0f, 90.0f * UnityEngine.Random.Range(0, 4), 0.0f);
         //}
 
-        public Vector3 Random()
-        {
-            return new Vector3(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), 0.0f);
-        }
+        
 
 
         //public TileBase GetTile(Vector2Int position)

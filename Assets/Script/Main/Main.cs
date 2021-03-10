@@ -25,13 +25,12 @@
 
 
         private Land land = new Land();
-
-
+        private Doodad doodad = new Doodad();
 
         private enum GenerationState
         {
             Land,
-            Tower,
+            Doodad,
             River,
             Vista
         }
@@ -41,6 +40,7 @@
         protected virtual void Start()
         {
             land.Radius = board.Radius;
+            doodad.Radius = board.Radius;
             timeController.Reset();
         }
 
@@ -59,24 +59,23 @@
                         {
                             timeGap = 0.01f;
                             towerCount = board.Radius;
-                            state = GenerationState.Tower;
+                            state = GenerationState.Doodad;
                         }
                         break;
-                    case GenerationState.Tower:
-                        if (towerCount > 0)
+                    case GenerationState.Doodad:
+                        if (doodad.HasNext())
                         {
-                            board.Replace(board.Random(), factory.Create(Factory.Tower));
+                            board.Replace(doodad.Next(), factory.Create(Factory.Tower));
                         }
                         else
                         {
                             timeGap = 0.01f;
-                            Vector3 position = board.Random();
+                            //Vector3 position = board.Random();
                             //queue.Enqueue(new Tuple<Vector3, TileBase>(position, River1)); ;
-                            set.Add(position);
+                            //set.Add(position);
                             state = GenerationState.River;
                         }
 
-                        --towerCount;
 
                         break;
 

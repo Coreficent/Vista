@@ -1,7 +1,5 @@
 ﻿namespace Coreficent.Generator
 {
-
-    using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
@@ -10,8 +8,6 @@
         private List<Vector3> positions = new List<Vector3>();
         private int radius = 0;
         private int index = 0;
-
-
 
         public int Radius
         {
