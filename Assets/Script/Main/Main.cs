@@ -23,8 +23,9 @@
         private Queue<Tuple<Vector3, TileBase>> queue = new Queue<Tuple<Vector3, TileBase>>();
 
 
-        private Land land = new Land();
-        private Doodad doodad = new Doodad();
+        private Land land;
+        private Doodad doodad;
+        private Track track;
 
         private enum GenerationState
         {
@@ -38,8 +39,12 @@
 
         protected virtual void Start()
         {
+            land = new Land(); ;
+            doodad = new Doodad(board);
+            track = new Track(board);
             land.Radius = board.Radius;
             doodad.Radius = board.Radius;
+            //track
             timeController.Reset();
         }
 
@@ -79,7 +84,7 @@
 
                     case GenerationState.River:
 
-                        
+
 
                         //if (queue.Count > 0)
                         //{

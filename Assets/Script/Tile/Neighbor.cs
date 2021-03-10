@@ -4,8 +4,8 @@
 
     public class Neighbor
     {
-        public Vector3 Offset = new Vector3();
-        public string Tile = "";
-        public float Rotation = 0.0f;
+        public Vector3 Offset;
+        public string Tile;
+        public float Rotation;
     }
 }
