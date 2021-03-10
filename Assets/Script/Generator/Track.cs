@@ -31,7 +31,16 @@
         public void Next()
         {
             TileBase parent = task.Pop();
-            set.Add(TileBase.HashNameFromPosition(parent.transform.position));
+
+            if (parent)
+            {
+                set.Add(TileBase.HashNameFromPosition(parent.transform.position));
+            }
+            else
+            {
+                DebugUtility.Log("formed a loop");
+                return;
+            }
 
             foreach (Neighbor i in parent.Neighbors)
             {

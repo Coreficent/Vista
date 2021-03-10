@@ -79,7 +79,7 @@
                         }
                         else
                         {
-                            timeGap = 0.1f;
+                            timeGap = 0.01f;
                             //Vector3 position = board.Random();
                             //queue.Enqueue(new Tuple<Vector3, TileBase>(position, River1)); ;
                             //set.Add(position);

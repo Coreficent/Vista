@@ -12,15 +12,18 @@
             {
                 List<Neighbor> neighbors = new List<Neighbor>();
 
-                //Neighbor[] north = new Neighbor[] {
-                //    new Neighbor() { Offset = RotateOffset(1.0f,0.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f) }
-                //};
+                Neighbor[] north = new Neighbor[] {
+                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f) },
+                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = Factory.RiverCorner, Rotation = CumulateRotation(90.0f) },
+                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = Factory.RiverCorner, Rotation = CumulateRotation(180.0f) }
+                };
 
-                //neighbors.Add(Pick(north));
+                neighbors.Add(Pick(north));
 
                 Neighbor[] south = new Neighbor[] {
-                    new Neighbor() { Offset = RotateOffset(1.0f,180.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f)},
-                    new Neighbor() { Offset = RotateOffset(1.0f,180.0f), Tile = Factory.RiverCorner, Rotation = CumulateRotation(0.0f) }
+                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f)},
+                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = Factory.RiverCorner, Rotation = CumulateRotation(0.0f) },
+                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = Factory.RiverCorner, Rotation = CumulateRotation(270.0f) }
                 };
 
                 neighbors.Add(Pick(south));
