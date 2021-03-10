@@ -67,7 +67,6 @@
                     case GenerationState.Land:
                         if (land.HasNext())
                         {
-                            //                            board.Place(land.Next(), factory.Create(Factory.Grass));
                             land.Next();
                         }
                         else
@@ -79,16 +78,11 @@
                     case GenerationState.Doodad:
                         if (doodad.HasNext())
                         {
-                            //board.Replace(doodad.Next(), factory.Create(Factory.Tower));
                             doodad.Next();
                         }
                         else
                         {
                             timeGap = 0.01f;
-                            //Vector3 position = board.Random();
-                            //queue.Enqueue(new Tuple<Vector3, TileBase>(position, River1)); ;
-                            //set.Add(position);
-
 
                             Vector3 position = board.RandomPosition();
                             TileBase river = board.Replace(position, factory.Create(Factory.RiverStraight));
@@ -111,85 +105,6 @@
                             timeGap = 0.1f;
                             state = GenerationState.Vista;
                         }
-
-                        //if (queue.Count > 0)
-                        //{
-                        //    var rootedGenesis = queue.Dequeue();
-                        //    Vector3 position = rootedGenesis.Item1;
-                        //    TileBase genesis = rootedGenesis.Item2;
-
-                        //    board.Replace(position, genesis);
-
-                        //    if (genesis.North.Count > 0)
-                        //    {
-                        //        float offset = 1.0f;
-                        //        float angleOffset = 0.0f;
-                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
-                        //        if (board.ValidRange(newPosition))
-                        //        {
-                        //            if (!set.Contains(newPosition))
-                        //            {
-                        //                queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.North[UnityEngine.Random.Range(0, genesis.North.Count)]));
-                        //                set.Add(newPosition);
-                        //            }
-                        //        }
-                        //    }
-
-                        //    if (genesis.East.Count > 0)
-                        //    {
-                        //        float offset = 1.0f;
-                        //        float angleOffset = 90.0f;
-                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
-                        //        {
-                        //            if (board.ValidRange(newPosition))
-                        //            {
-                        //                if (!set.Contains(newPosition))
-                        //                {
-                        //                    queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.East[UnityEngine.Random.Range(0, genesis.East.Count)]));
-                        //                    set.Add(newPosition);
-                        //                }
-                        //            }
-                        //        }
-                        //    }
-                        //    if (genesis.South.Count > 0)
-                        //    {
-                        //        float offset = 1.0f;
-                        //        float angleOffset = 180.0f;
-                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
-
-                        //        if (board.ValidRange(newPosition))
-                        //        {
-                        //            if (!set.Contains(newPosition))
-                        //            {
-                        //                queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.South[UnityEngine.Random.Range(0, genesis.South.Count)]));
-                        //                set.Add(newPosition);
-                        //            }
-                        //        }
-                        //    }
-                        //    if (genesis.West.Count > 0)
-                        //    {
-                        //        float offset = 1.0f;
-                        //        float angleOffset = 270.0f;
-                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
-
-                        //        DebugUtility.Bug("go west", newPosition);
-
-                        //        if (board.ValidRange(newPosition))
-                        //        {
-                        //            if (!set.Contains(newPosition))
-                        //            {
-                        //                queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.West[UnityEngine.Random.Range(0, genesis.West.Count)]));
-                        //                set.Add(newPosition);
-                        //            }
-                        //        }
-                        //    }
-
-                        //}
-                        //else
-                        //{
-                        //    state = GenerationState.Vista;
-                        //}
-
                         break;
 
                     case GenerationState.Vista:

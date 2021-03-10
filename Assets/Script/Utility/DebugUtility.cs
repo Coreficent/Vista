@@ -21,11 +21,7 @@
 
         public static void Assert(string name, bool condition)
         {
-            if (condition)
-            {
-                Log("Assert" + _delimiter + "Passed" + _delimiter + name);
-            }
-            else
+            if (!condition)
             {
                 Warn("Assert" + _delimiter + "Failed" + _delimiter + name);
             }
