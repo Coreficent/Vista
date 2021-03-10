@@ -5,11 +5,11 @@
 
     public class Factory : ReinforcedBehavior
     {
-        public TileBase grass;
-        public TileBase tower;
-        public TileBase riverStraight;
-        public TileBase riverCorner;
-        public TileBase roadStraight;
-        public TileBase roadCorner;
+        public TileBase Grass;
+        public TileBase RiverCorner;
+        public TileBase RiverStraight;
+        public TileBase RoadCorner;
+        public TileBase RoadStraight;
+        public TileBase Tower;
     }
 }

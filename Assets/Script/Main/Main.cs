@@ -71,7 +71,7 @@
                         if (!Iterate(doodad, 1000))
                         {
                             Vector3 position = board.RandomPosition();
-                            TileBase riverTile = board.Replace(position, factory.riverStraight);
+                            TileBase riverTile = board.Replace(position, factory.RiverStraight);
                             river.Add(riverTile);
 
                             state = GenerationState.River;
@@ -82,7 +82,7 @@
                         if (!Iterate(river, 1))
                         {
                             Vector3 position = board.RandomPosition();
-                            TileBase roadTile = board.Replace(position, factory.roadStraight);
+                            TileBase roadTile = board.Replace(position, factory.RoadStraight);
                             road.Add(roadTile);
 
                             state = GenerationState.Road;

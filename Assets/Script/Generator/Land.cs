@@ -11,6 +11,7 @@
 
         private Board board;
         private Factory factory;
+
         public Land(Board board, Factory factory)
         {
             this.board = board;
@@ -40,7 +41,7 @@
 
         public void Next()
         {
-            board.Place(positions[index++], factory.grass);
+            board.Place(positions[index++], factory.Grass);
         }
     }
 }

@@ -121,36 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &175346874
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 175346875}
-  m_Layer: 0
-  m_Name: RoadStraight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &175346875
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175346874}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &432189072
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,13 +429,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5089569de945d247a64fe2b86542be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grass: {fileID: 564928239478745917, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
-  tower: {fileID: 7359759808696083322, guid: 7e022788c25b71941947eca413ee6a39, type: 3}
-  riverStraight: {fileID: 4513582396609996944, guid: 73f8f8f61ae378444bd200dea62c8b4d,
+  Grass: {fileID: 564928239478745917, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
+  RiverCorner: {fileID: 6057782042993862570, guid: 9f01291d4b86ca643ab09d81a9c0a797,
     type: 3}
-  riverCorner: {fileID: 6057782042993862570, guid: 9f01291d4b86ca643ab09d81a9c0a797,
+  RiverStraight: {fileID: 4513582396609996944, guid: 73f8f8f61ae378444bd200dea62c8b4d,
     type: 3}
-  roadStraight: {fileID: 2931913318895391388, guid: 3889f9b221d796f4c88454dbb2cf6d38,
+  RoadCorner: {fileID: 954501220489733657, guid: 1a64536f34847b542b3c69e86f08465d,
     type: 3}
-  roadCorner: {fileID: 954501220489733657, guid: 1a64536f34847b542b3c69e86f08465d,
+  RoadStraight: {fileID: 2931913318895391388, guid: 3889f9b221d796f4c88454dbb2cf6d38,
     type: 3}
+  Tower: {fileID: 7359759808696083322, guid: 7e022788c25b71941947eca413ee6a39, type: 3}

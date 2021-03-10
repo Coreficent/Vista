@@ -42,7 +42,7 @@
                 return;
             }
 
-            foreach (Neighbor i in parent.Neighbors(factory))
+            foreach (Neighbor i in parent.FindNeighbors(factory))
             {
 
                 Vector3 position = parent.transform.position + i.Offset;

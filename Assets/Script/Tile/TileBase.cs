@@ -21,7 +21,7 @@
 
             return result;
         }
-        public virtual List<Neighbor> Neighbors(Factory factory)
+        public virtual List<Neighbor> FindNeighbors(Factory factory)
         {
             return new List<Neighbor>();
         }
