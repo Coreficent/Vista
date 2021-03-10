@@ -29,13 +29,15 @@
 
         private Land land;
         private Doodad doodad;
-        private Track track;
+        private Track river;
+        private Track road;
 
         private enum GenerationState
         {
             Land,
             Doodad,
             River,
+            Road,
             Vista
         }
 
@@ -45,7 +47,8 @@
         {
             land = new Land(board, factory); ;
             doodad = new Doodad(board, factory);
-            track = new Track(board, factory);
+            river = new Track(board, factory);
+            road = new Track(board, factory);
             float center = board.Size % 2 == 0 ? board.Size / 2 - 0.5f : board.Size / 2 + 0.0f;
             mainCamera.transform.position = new Vector3(center, center, -board.Size);
             land.Size = board.Size;
@@ -85,26 +88,39 @@
                             timeGap = 0.01f;
 
                             Vector3 position = board.RandomPosition();
-                            TileBase river = board.Replace(position, factory.Create(Factory.RiverStraight));
-                            track.Add(river);
+                            TileBase riverTile = board.Replace(position, factory.Create(Factory.RiverStraight));
+                            river.Add(riverTile);
 
                             state = GenerationState.River;
                         }
-
-
                         break;
 
                     case GenerationState.River:
-
-                        if (track.HasNext())
+                        if (river.HasNext())
                         {
-                            track.Next();
+                            river.Next();
+                        }
+                        else
+                        {
+                            Vector3 position = board.RandomPosition();
+                            TileBase roadTile = board.Replace(position, factory.Create(Factory.RiverStraight));
+                            road.Add(roadTile);
+
+                            timeGap = 0.1f;
+                            state = GenerationState.Road;
+                        }
+                        break;
+                    case GenerationState.Road:
+                        if (road.HasNext())
+                        {
+                            road.Next();
                         }
                         else
                         {
                             timeGap = 0.1f;
                             state = GenerationState.Vista;
                         }
+
                         break;
 
                     case GenerationState.Vista:

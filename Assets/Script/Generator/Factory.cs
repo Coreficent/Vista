@@ -11,6 +11,8 @@
         public static string Tower = "Tower";
         public static string RiverStraight = "RiverStraight";
         public static string RiverCorner = "RiverCorner";
+        public static string RoadStraight = "RoadStraight";
+        public static string RoadCorner = "RoadCorner";
 
         [SerializeField]
         private TileBase grass;
@@ -24,6 +26,13 @@
         [SerializeField]
         private TileBase riverCorner;
 
+        [SerializeField]
+        private TileBase roadStraight;
+
+        [SerializeField]
+        private TileBase roadCorner;
+
+
         private Dictionary<string, TileBase> tiles = new Dictionary<string, TileBase>();
 
         protected virtual void Start()
@@ -32,6 +41,8 @@
             tiles[Tower] = tower;
             tiles[RiverStraight] = riverStraight;
             tiles[RiverCorner] = riverCorner;
+            tiles[RoadStraight] = roadStraight;
+            tiles[RoadCorner] = roadCorner;
         }
 
         public TileBase Create(string name)
