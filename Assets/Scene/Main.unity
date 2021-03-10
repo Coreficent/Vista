@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28be967b90b1f6f45b1e3e70a6470b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 15
+  radius: 7
 --- !u!4 &513397988
 Transform:
   m_ObjectHideFlags: 0
@@ -430,3 +430,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grass: {fileID: 564928239478745917, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
   tower: {fileID: 7359759808696083322, guid: 7e022788c25b71941947eca413ee6a39, type: 3}
+  riverStraight: {fileID: 4513582396609996944, guid: 73f8f8f61ae378444bd200dea62c8b4d,
+    type: 3}
