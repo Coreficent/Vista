@@ -84,7 +84,7 @@
                         if (!Iterate(river, 1))
                         {
                             Vector3 position = board.RandomPosition();
-                            TileBase roadTile = board.Replace(position, factory.Create(Factory.RiverStraight));
+                            TileBase roadTile = board.Replace(position, factory.Create(Factory.RoadStraight));
                             road.Add(roadTile);
 
                             state = GenerationState.Road;
