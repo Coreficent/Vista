@@ -11,12 +11,6 @@
         [SerializeField]
         private int radius;
 
-        public List<TileBase> geneses;
-
-        private List<Vector2Int> positions = new List<Vector2Int>();
-
-        //private TileBase[,] board;
-
         private Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
 
         public int Radius
@@ -24,41 +18,19 @@
             get { return radius; }
         }
 
-
-        public void Start()
+        public void Place(Vector2Int position, TileBase tileType)
         {
-            for (var x = 0; x < radius; ++x)
-            {
-                for (var y = 0; y < radius; ++y)
-                {
-                    positions.Add(new Vector2Int(x, y));
-                }
-            }
-            //board = new TileBase[radius, radius];
+            TileBase instance = Instantiate(tileType);
+            instance.transform.position = new Vector3(position.x, 0, position.y);
+            map[instance.HashName] = instance;
         }
 
-        public void Place(Vector2Int position, TileBase tile)
+        public void Replace(Vector2Int position, TileBase tile)
         {
-            TileBase tower1 = Instantiate(tile);
-            tower1.transform.position = new Vector3(position.x, 0, position.y);
-            //board[position.x, position.y] = tower1;
-            map[tower1.HashName] = tower1;
-        }
-
-
-
-        public void PlaceTile(Vector2Int position, TileBase tile)
-        {
-            //Destroy(board[position.x, position.y].gameObject);
-
-            TileBase tower1 = Instantiate(tile);
-            tower1.transform.position = new Vector3(position.x, 0, position.y);
-            //board[position.x, position.y] = tower1;
-
-            DebugUtility.Bug("hash name", tower1.HashName);
-
-            Destroy(map[tower1.HashName].gameObject);
-            map[tower1.HashName] = tower1;
+            TileBase instance = Instantiate(tile);
+            instance.transform.position = new Vector3(position.x, 0, position.y);
+            Destroy(map[instance.HashName].gameObject);
+            map[instance.HashName] = instance;
         }
 
 

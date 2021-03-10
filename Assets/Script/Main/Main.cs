@@ -72,7 +72,7 @@
                     case GenerationState.Tower:
                         if (towerCount > 0)
                         {
-                            board.PlaceTile(board.Random(), Tower1);
+                            board.Replace(board.Random(), Tower1);
                         }
                         else
                         {
@@ -95,7 +95,7 @@
                             Vector2Int position = rootedGenesis.Item1;
                             TileBase genesis = rootedGenesis.Item2;
 
-                            board.PlaceTile(position, genesis);
+                            board.Replace(position, genesis);
 
                             if (genesis.North.Count > 0)
                             {
