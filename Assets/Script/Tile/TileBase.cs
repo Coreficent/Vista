@@ -69,5 +69,15 @@
         {
             return neighbors[Random.Range(0, neighbors.Length)];
         }
+
+        protected float CumulateRotation(float rotation)
+        {
+            return transform.eulerAngles.z + rotation;
+        }
+
+        protected Vector3 RotateOffset(float offset, float angle)
+        {
+            return new Vector3(Mathf.Sin((transform.eulerAngles.z + angle) * Mathf.Deg2Rad) * offset, Mathf.Cos((transform.eulerAngles.z + angle) * Mathf.Deg2Rad) * offset, 0.0f);
+        }
     }
 }

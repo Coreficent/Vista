@@ -43,7 +43,7 @@
                     if (!set.Contains(TileBase.HashNameFromPosition(position)))
                     {
                         TileBase tileBase = board.Replace(position, factory.Create(i.Tile));
-                        //TODO
+                        tileBase.transform.eulerAngles = new Vector3(0.0f, 0.0f, i.Rotation);
 
                         DebugUtility.ToDo("set rotation");
                         queue.Enqueue(tileBase);
