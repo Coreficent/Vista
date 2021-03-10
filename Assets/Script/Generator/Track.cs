@@ -42,6 +42,9 @@
                 {
                     if (!set.Contains(TileBase.HashNameFromPosition(position)))
                     {
+
+                        DebugUtility.Log("neighbor", i.Offset);
+
                         TileBase tileBase = board.Replace(position, factory.Create(i.Tile));
                         tileBase.transform.eulerAngles = new Vector3(0.0f, 0.0f, i.Rotation);
 

@@ -12,11 +12,11 @@
             {
                 List<Neighbor> neighbors = new List<Neighbor>();
 
-                Neighbor[] north = new Neighbor[] {
-                    new Neighbor() { Offset = RotateOffset(1.0f,0.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f) }
-                };
+                //Neighbor[] north = new Neighbor[] {
+                //    new Neighbor() { Offset = RotateOffset(1.0f,0.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f) }
+                //};
 
-                neighbors.Add(Pick(north));
+                //neighbors.Add(Pick(north));
 
                 Neighbor[] south = new Neighbor[] {
                     new Neighbor() { Offset = RotateOffset(1.0f,180.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f)},

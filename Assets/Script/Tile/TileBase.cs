@@ -77,7 +77,7 @@
 
         protected Vector3 RotateOffset(float offset, float angle)
         {
-            return new Vector3(Mathf.Sin((transform.eulerAngles.z + angle) * Mathf.Deg2Rad) * offset, Mathf.Cos((transform.eulerAngles.z + angle) * Mathf.Deg2Rad) * offset, 0.0f);
+            return new Vector3(-Mathf.Sin((transform.eulerAngles.z + angle) * Mathf.Deg2Rad) * offset, Mathf.Cos((transform.eulerAngles.z + angle) * Mathf.Deg2Rad) * offset, 0.0f);
         }
     }
 }
