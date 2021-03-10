@@ -20,7 +20,7 @@
                 //neighbors.Add(Pick(north));
 
                 Neighbor[] west = new Neighbor[] {
-                    new Neighbor() { Offset = RotateOffset(1.0f,270.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(90.0f) },
+                    new Neighbor() { Offset = RotateOffset(1.0f,270.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(270.0f) },
                 };
 
                 neighbors.Add(Pick(west));

@@ -7,7 +7,7 @@
 
     public class Track
     {
-        private Queue<TileBase> queue = new Queue<TileBase>();
+        private Stack<TileBase> task = new Stack<TileBase>();
         private HashSet<string> set = new HashSet<string>();
 
         private Board board;
@@ -20,17 +20,17 @@
 
         public void Add(TileBase tileBase)
         {
-            queue.Enqueue(tileBase);
+            task.Push(tileBase);
         }
 
         public bool HasNext()
         {
-            return queue.Count > 0;
+            return task.Count > 0;
         }
 
         public void Next()
         {
-            TileBase parent = queue.Dequeue();
+            TileBase parent = task.Pop();
             set.Add(TileBase.HashNameFromPosition(parent.transform.position));
 
             foreach (Neighbor i in parent.Neighbors)
@@ -46,7 +46,7 @@
                         tileBase.transform.eulerAngles = new Vector3(0.0f, 0.0f, i.Rotation);
 
                         //DebugUtility.ToDo("set rotation");
-                        queue.Enqueue(tileBase);
+                        task.Push(tileBase);
                     }
                 }
             }
