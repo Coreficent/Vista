@@ -28,7 +28,9 @@
 
         public void Next()
         {
-
+            // pop
+            // get neighbor
+            // put neighbor in
         }
     }
 }

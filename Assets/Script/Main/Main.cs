@@ -89,7 +89,15 @@
 
                     case GenerationState.River:
 
-
+                        if (track.HasNext())
+                        {
+                            track.Next();
+                        }
+                        else
+                        {
+                            timeGap = 0.01f;
+                            state = GenerationState.Vista;
+                        }
 
                         //if (queue.Count > 0)
                         //{
@@ -173,7 +181,7 @@
 
                     case GenerationState.Vista:
 
-                        // DebugUtility.Log("Vista");
+                        DebugUtility.Log("Vista");
 
                         break;
 
