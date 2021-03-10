@@ -19,7 +19,8 @@
                 neighbors.Add(Pick(north));
 
                 Neighbor[] south = new Neighbor[] {
-                    new Neighbor() { Offset = new Vector3(0.0f, -1.0f, 0.0f), Tile = Factory.RiverStraight, Rotation = 0.0f }
+                    new Neighbor() { Offset = new Vector3(0.0f, -1.0f, 0.0f), Tile = Factory.RiverStraight, Rotation = 0.0f },
+                    new Neighbor() { Offset = new Vector3(0.0f, -1.0f, 0.0f), Tile = Factory.RiverCorner, Rotation = 0.0f }
                 };
 
                 neighbors.Add(Pick(south));
