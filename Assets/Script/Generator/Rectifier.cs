@@ -15,6 +15,11 @@
         private List<Vector3> positions = new List<Vector3>();
         private int currentIndex = 0;
 
+        static private float GetPositiveAngle(float angle)
+        {
+            return angle < 0.0f ? angle + 360.0f : angle;
+        }
+
         private Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> bridge = (middle, north, west, south, east, angle) =>
         {
             if (middle is RoadStraight)
@@ -25,14 +30,16 @@
                     {
                         if (west is RiverStraight)
                         {
-                            if (Mathf.Approximately(Mathf.Abs(middle.transform.eulerAngles.z), Mathf.Abs(west.transform.eulerAngles.z)))
+                            float difference = Mathf.Abs(middle.transform.eulerAngles.z - west.transform.eulerAngles.z);
+                            if (Mathf.Approximately(difference, 0.0f) || Mathf.Approximately(difference, 180.0f))
                             {
                                 return false;
                             }
                         }
                         if (east is RiverStraight)
                         {
-                            if (Mathf.Approximately(Mathf.Abs(middle.transform.eulerAngles.z), Mathf.Abs(east.transform.eulerAngles.z)))
+                            float difference = Mathf.Abs(middle.transform.eulerAngles.z - east.transform.eulerAngles.z);
+                            if (Mathf.Approximately(difference, 0.0f) || Mathf.Approximately(difference, 180.0f))
                             {
                                 return false;
                             }
@@ -41,6 +48,33 @@
                     }
                 }
             }
+            return false;
+        };
+
+        private Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> tIntersection = (middle, north, west, south, east, angle) =>
+        {
+            if (middle is RoadCorner || middle is RoadStraight)
+            {
+                if (north is RoadCorner || north is RoadStraight)
+                {
+                    if (west is RoadCorner || west is RoadStraight)
+                    {
+                        if (east is RoadCorner || east is RoadStraight)
+                        {
+                            if (!(south is RoadCorner) && !(south is RoadStraight))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        };
+
+        private Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> template = (middle, north, west, south, east, angle) =>
+        {
             return false;
         };
 
@@ -71,13 +105,14 @@
             TileBase east = board.GetEastTile(position);
 
             Rectify(middle, north, west, south, east, factory.Bridge, bridge);
+            // Rectify(middle, north, west, south, east, factory.RoadTIntersection, tIntersection);
         }
 
         private void Rectify(TileBase middle, TileBase north, TileBase west, TileBase south, TileBase east, TileBase rectification, Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> condition)
         {
-            Rectify(middle, west, south, east, north, -270.0f, rectification, condition);
-            Rectify(middle, south, east, north, west, -180.0f, rectification, condition);
-            Rectify(middle, east, north, west, south, -90.0f, rectification, condition);
+            //Rectify(middle, west, south, east, north, -270.0f, rectification, condition);
+            //Rectify(middle, south, east, north, west, -180.0f, rectification, condition);
+            //Rectify(middle, east, north, west, south, -90.0f, rectification, condition);
             Rectify(middle, north, west, south, east, 360.0f, rectification, condition);
             Rectify(middle, north, west, south, east, 0.0f, rectification, condition);
             Rectify(middle, west, south, east, north, 90.0f, rectification, condition);
@@ -89,10 +124,12 @@
         {
             if (condition(middle, north, west, south, east, angle))
             {
-                DebugUtility.Log("replacing", positions, rectification);
+                DebugUtility.Log("replacing", rectification);
                 TileBase rectifiedTile = board.Replace(middle.transform.position, rectification);
                 rectifiedTile.transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
             }
         }
+
+
     }
 }
