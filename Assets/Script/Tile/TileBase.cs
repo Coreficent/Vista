@@ -6,12 +6,6 @@
 
     public class TileBase : ReinforcedBehavior
     {
-        public List<TileBase> North;
-        public List<TileBase> South;
-        public List<TileBase> West;
-        public List<TileBase> East;
-
-        protected List<Vector2Int> neighbors = new List<Vector2Int> { new Vector2Int(0, 1), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(-1, 0) };
 
         public string HashName
         {
@@ -33,11 +27,6 @@
         protected virtual void Start()
         {
 
-        }
-
-        public virtual List<Vector2Int> GetNeighbors(Vector2Int position)
-        {
-            return new List<Vector2Int>();
         }
 
         protected int GetDirectionIndex(int input)
