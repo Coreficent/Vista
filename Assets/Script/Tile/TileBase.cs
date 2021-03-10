@@ -1,10 +1,19 @@
 ﻿namespace Coreficent.Tile
 {
     using Coreficent.Utility;
+    using System.Collections.Generic;
     using UnityEngine;
 
     public class TileBase : ReinforcedBehavior
     {
+
+        public virtual List<Neighbor> Neighbors
+        {
+            get
+            {
+                return new List<Neighbor>();
+            }
+        }
 
         public string HashName
         {
