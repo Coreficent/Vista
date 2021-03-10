@@ -44,7 +44,6 @@
             track = new Track(board);
             land.Radius = board.Radius;
             doodad.Radius = board.Radius;
-            //track
             timeController.Reset();
         }
 
@@ -76,6 +75,12 @@
                             //Vector3 position = board.Random();
                             //queue.Enqueue(new Tuple<Vector3, TileBase>(position, River1)); ;
                             //set.Add(position);
+
+
+                            Vector3 position = board.RandomPosition();
+                            TileBase river =  board.Replace(position, factory.Create(Factory.RiverStraight));
+                            track.Add(river);
+
                             state = GenerationState.River;
                         }
 

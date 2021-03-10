@@ -18,24 +18,34 @@
             get { return radius; }
         }
 
-        public void Place(Vector3 position, TileBase tileType)
+        public TileBase Place(Vector3 position, TileBase tileType)
         {
             TileBase instance = Instantiate(tileType);
             instance.transform.position = position;
             map[instance.HashName] = instance;
+
+            return instance;
         }
 
-        public void Replace(Vector3 position, TileBase tile)
+        public TileBase Replace(Vector3 position, TileBase tile)
         {
             TileBase instance = Instantiate(tile);
             instance.transform.position = position;
             Destroy(map[instance.HashName].gameObject);
             map[instance.HashName] = instance;
+
+            return instance;
         }
-        public Vector3 Random()
+        public Vector3 RandomPosition()
         {
             return new Vector3(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), 0.0f);
         }
+
+        public TileBase RandomTile()
+        {
+            return map.ElementAt(Random.Range(0, map.Count)).Value;
+        }
+
 
         //public void RepairTile(Vector2Int position)
         //{

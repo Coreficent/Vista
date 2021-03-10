@@ -32,7 +32,7 @@
         public Vector3 Next()
         {
             --doodadCount;
-            return board.Random();
+            return board.RandomPosition();
         }
     }
 }
