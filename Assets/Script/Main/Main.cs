@@ -7,6 +7,7 @@
     using System;
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     public class Main : ReinforcedBehavior
     {
@@ -49,6 +50,11 @@
 
         protected virtual void Update()
         {
+            if (Input.GetKey(KeyCode.R))
+            {
+                SceneManager.LoadScene("Main");
+            }
+
             if (timeController.TimePassed > timeGap)
             {
                 switch (state)
@@ -73,7 +79,7 @@
                         }
                         else
                         {
-                            timeGap = 1.0f;
+                            timeGap = 0.1f;
                             //Vector3 position = board.Random();
                             //queue.Enqueue(new Tuple<Vector3, TileBase>(position, River1)); ;
                             //set.Add(position);
@@ -97,7 +103,7 @@
                         }
                         else
                         {
-                            timeGap = 1.0f;
+                            timeGap = 0.1f;
                             state = GenerationState.Vista;
                         }
 
