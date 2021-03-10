@@ -39,8 +39,8 @@
         {
             land = new Land(board, factory); ;
             doodad = new Doodad(board, factory);
-            river = new Track(board, factory, factory.RiverStraight);
-            road = new Track(board, factory, factory.RoadStraight);
+            river = new Track(board, factory, factory.RiverStraight, board.Size * 2);
+            road = new Track(board, factory, factory.RoadStraight, board.Size * 4);
             float center = board.Size % 2 == 0 ? board.Size / 2 - 0.5f : board.Size / 2 + 0.0f;
             mainCamera.transform.position = new Vector3(center, center, -board.Size);
             land.Size = board.Size;

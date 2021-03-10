@@ -15,21 +15,37 @@
 
         private TileBase tileType;
 
-        public Track(Board board, Factory factory, TileBase tileType)
+        private int minimumCount;
+        private int currentCount = 0;
+
+        public Track(Board board, Factory factory, TileBase tileType, int minimumCount)
         {
             this.board = board;
             this.factory = factory;
             this.tileType = tileType;
+            this.minimumCount = minimumCount;
         }
 
         public bool HasNext()
         {
-            return task.Count > 0;
+            if (!(task.Count > 0))
+            {
+                if (currentCount < minimumCount)
+                {
+                    StageTrack();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void Next()
         {
             TileBase parent = task.Pop();
+            ++currentCount;
 
             if (parent)
             {
