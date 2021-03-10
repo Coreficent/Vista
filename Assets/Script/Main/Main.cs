@@ -2,7 +2,6 @@
 {
     using Coreficent.Controller;
     using Coreficent.Generator;
-    using Coreficent.Tile;
     using Coreficent.Utility;
     using UnityEngine;
     using UnityEngine.SceneManagement;
@@ -40,8 +39,8 @@
         {
             land = new Land(board, factory); ;
             doodad = new Doodad(board, factory);
-            river = new Track(board, factory);
-            road = new Track(board, factory);
+            river = new Track(board, factory, factory.RiverStraight);
+            road = new Track(board, factory, factory.RoadStraight);
             float center = board.Size % 2 == 0 ? board.Size / 2 - 0.5f : board.Size / 2 + 0.0f;
             mainCamera.transform.position = new Vector3(center, center, -board.Size);
             land.Size = board.Size;
@@ -70,10 +69,7 @@
                     case GenerationState.Doodad:
                         if (!Iterate(doodad, 1000))
                         {
-                            Vector3 position = board.RandomPosition();
-                            TileBase riverTile = board.Replace(position, factory.RiverStraight);
-                            river.Add(riverTile);
-
+                            river.StageTrack();
                             state = GenerationState.River;
                         }
                         break;
@@ -81,10 +77,7 @@
                     case GenerationState.River:
                         if (!Iterate(river, 1))
                         {
-                            Vector3 position = board.RandomPosition();
-                            TileBase roadTile = board.Replace(position, factory.RoadStraight);
-                            road.Add(roadTile);
-
+                            road.StageTrack();
                             state = GenerationState.Road;
                         }
                         break;

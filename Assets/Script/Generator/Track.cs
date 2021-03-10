@@ -12,15 +12,14 @@
 
         private Board board;
         private Factory factory;
-        public Track(Board board, Factory factory)
+
+        private TileBase tileType;
+
+        public Track(Board board, Factory factory, TileBase tileType)
         {
             this.board = board;
             this.factory = factory;
-        }
-
-        public void Add(TileBase tileBase)
-        {
-            task.Push(tileBase);
+            this.tileType = tileType;
         }
 
         public bool HasNext()
@@ -58,6 +57,13 @@
                     }
                 }
             }
+        }
+
+        public void StageTrack()
+        {
+            Vector3 position = board.RandomPosition();
+            TileBase riverTile = board.Replace(position, tileType);
+            task.Push(riverTile);
         }
     }
 }
