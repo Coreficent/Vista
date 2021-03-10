@@ -13,6 +13,23 @@
 
         protected List<Vector2Int> neighbors = new List<Vector2Int> { new Vector2Int(0, 1), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(-1, 0) };
 
+        public string HashName
+        {
+            get
+            {
+                string result = "";
+                string delimiter = ":";
+
+                result += Mathf.RoundToInt(transform.position.x * 10.0f);
+                result += delimiter;
+                result += Mathf.RoundToInt(transform.position.y * 10.0f);
+                result += delimiter;
+                result += Mathf.RoundToInt(transform.position.z * 10.0f);
+
+                return result;
+            }
+        }
+
         protected virtual void Start()
         {
 
@@ -46,21 +63,5 @@
         {
             return 0;
         }
-
-        public string HashName()
-        {
-            string result = "";
-            string delimiter = ":";
-
-            result += Mathf.RoundToInt(transform.position.x * 10.0f);
-            result += delimiter;
-            result += Mathf.RoundToInt(transform.position.y * 10.0f);
-            result += delimiter;
-            result += Mathf.RoundToInt(transform.position.z * 10.0f);
-            result += delimiter;
-
-            return result;
-        }
-
     }
 }

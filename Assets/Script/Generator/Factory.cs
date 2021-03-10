@@ -22,7 +22,7 @@
 
         public TileBase Create(string name)
         {
-            if (tiles.ContainsKey(name))
+            if (!tiles.ContainsKey(name))
             {
                 DebugUtility.Warn("Trying to access undefined tile", name);
             }
