@@ -18,7 +18,6 @@
             DebugUtility.Assert("board size validation", size != 0);
         }
 
-
         public int Size
         {
             get { return size; }
@@ -26,7 +25,7 @@
 
         public TileBase Place(Vector3 position, TileBase tileType)
         {
-            TileBase instance = Instantiate(tileType);
+            TileBase instance = Instantiate(tileType, transform);
             instance.transform.position = position;
             map[instance.HashName] = instance;
 

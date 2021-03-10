@@ -90,6 +90,14 @@
 
                     case GenerationState.Vista:
 
+                        float rotateAngle = 30.0f;
+                        float rotateSpeed = 15.0f;
+
+                        if (board.transform.eulerAngles.x < rotateAngle)
+                        {
+                            board.transform.eulerAngles += new Vector3(rotateSpeed * Time.deltaTime, 0.0f, 0.0f);
+                        }
+
                         DebugUtility.Log("Vista");
 
                         break;
