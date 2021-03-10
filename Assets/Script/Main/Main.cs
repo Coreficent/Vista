@@ -65,25 +65,16 @@
                 switch (state)
                 {
                     case GenerationState.Land:
-                        if (land.HasNext())
-                        {
-                            land.Next();
-                        }
-                        else
+                        if (!Iterate(land))
                         {
                             timeGap = 0.01f;
                             state = GenerationState.Doodad;
                         }
                         break;
                     case GenerationState.Doodad:
-                        if (doodad.HasNext())
-                        {
-                            doodad.Next();
-                        }
-                        else
+                        if (!Iterate(doodad))
                         {
                             timeGap = 0.01f;
-
                             Vector3 position = board.RandomPosition();
                             TileBase riverTile = board.Replace(position, factory.Create(Factory.RiverStraight));
                             river.Add(riverTile);
@@ -93,11 +84,7 @@
                         break;
 
                     case GenerationState.River:
-                        if (river.HasNext())
-                        {
-                            river.Next();
-                        }
-                        else
+                        if (!Iterate(river))
                         {
                             Vector3 position = board.RandomPosition();
                             TileBase roadTile = board.Replace(position, factory.Create(Factory.RiverStraight));
@@ -108,11 +95,7 @@
                         }
                         break;
                     case GenerationState.Road:
-                        if (road.HasNext())
-                        {
-                            road.Next();
-                        }
-                        else
+                        if (!Iterate(road))
                         {
                             timeGap = 0.1f;
                             state = GenerationState.Vista;
@@ -132,6 +115,19 @@
                 }
 
                 timeController.Reset();
+            }
+        }
+
+        private bool Iterate(IIterator iterator)
+        {
+            if (iterator.HasNext())
+            {
+                iterator.Next();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
