@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class TileRiverStraight : TileBase
+    public class RiverStraight : TileBase
     {
         public override List<Neighbor> Neighbors
         {
