@@ -7,7 +7,7 @@
 
     public class Land
     {
-        private List<Vector2Int> positions = new List<Vector2Int>();
+        private List<Vector3> positions = new List<Vector3>();
         private int radius = 0;
         private int index = 0;
 
@@ -23,7 +23,7 @@
                 {
                     for (var y = 0; y < radius; ++y)
                     {
-                        positions.Add(new Vector2Int(x, y));
+                        positions.Add(new Vector3(x, 0.0f, y));
                     }
                 }
             }
@@ -34,7 +34,7 @@
             return index < radius * radius;
         }
 
-        public Vector2Int Next()
+        public Vector3 Next()
         {
             return positions[index++];
         }

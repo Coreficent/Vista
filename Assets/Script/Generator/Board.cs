@@ -18,10 +18,10 @@
             get { return radius; }
         }
 
-        public void Place(Vector2Int position, TileBase tileType)
+        public void Place(Vector3 position, TileBase tileType)
         {
             TileBase instance = Instantiate(tileType);
-            instance.transform.position = new Vector3(position.x, 0, position.y);
+            instance.transform.position = position;
             map[instance.HashName] = instance;
         }
 
