@@ -64,5 +64,10 @@
         {
             return 0;
         }
+
+        protected Neighbor Pick(Neighbor[] neighbors)
+        {
+            return neighbors[Random.Range(0, neighbors.Length)];
+        }
     }
 }

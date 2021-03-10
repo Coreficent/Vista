@@ -432,3 +432,5 @@ MonoBehaviour:
   tower: {fileID: 7359759808696083322, guid: 7e022788c25b71941947eca413ee6a39, type: 3}
   riverStraight: {fileID: 4513582396609996944, guid: 73f8f8f61ae378444bd200dea62c8b4d,
     type: 3}
+  riverCorner: {fileID: 6057782042993862570, guid: 9f01291d4b86ca643ab09d81a9c0a797,
+    type: 3}
