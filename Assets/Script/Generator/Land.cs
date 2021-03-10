@@ -9,6 +9,14 @@
         private int radius = 0;
         private int index = 0;
 
+        private Board board;
+        private Factory factory;
+        public Land(Board board, Factory factory)
+        {
+            this.board = board;
+            this.factory = factory;
+        }
+
         public int Radius
         {
             get { return radius; }
@@ -30,9 +38,9 @@
             return index < radius * radius;
         }
 
-        public Vector3 Next()
+        public void Next()
         {
-            return positions[index++];
+            board.Place(positions[index++], factory.Create(Factory.Grass));
         }
     }
 }

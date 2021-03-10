@@ -39,7 +39,7 @@
 
         protected virtual void Start()
         {
-            land = new Land(); ;
+            land = new Land(board, factory); ;
             doodad = new Doodad(board, factory);
             track = new Track(board);
             land.Radius = board.Radius;
@@ -56,7 +56,8 @@
                     case GenerationState.Land:
                         if (land.HasNext())
                         {
-                            board.Place(land.Next(), factory.Create(Factory.Grass));
+                            //                            board.Place(land.Next(), factory.Create(Factory.Grass));
+                            land.Next();
                         }
                         else
                         {
@@ -79,7 +80,7 @@
 
 
                             Vector3 position = board.RandomPosition();
-                            TileBase river =  board.Replace(position, factory.Create(Factory.RiverStraight));
+                            TileBase river = board.Replace(position, factory.Create(Factory.RiverStraight));
                             track.Add(river);
 
                             state = GenerationState.River;
