@@ -79,6 +79,8 @@
 
                     case GenerationState.River:
 
+                        
+
                         //if (queue.Count > 0)
                         //{
                         //    var rootedGenesis = queue.Dequeue();

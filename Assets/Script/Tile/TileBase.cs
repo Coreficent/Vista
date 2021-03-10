@@ -1,7 +1,6 @@
 ﻿namespace Coreficent.Tile
 {
     using Coreficent.Utility;
-    using System.Collections.Generic;
     using UnityEngine;
 
     public class TileBase : ReinforcedBehavior

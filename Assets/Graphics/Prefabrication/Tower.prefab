@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d331932fed15d4f8b000473cb945dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  North: []
-  South: []
-  West: []
-  East: []
+  jsonNeighbors: '{"offset":{1,1,1},"tile":"Grass","rotation":0}'
 --- !u!1001 &3427956440026334902
 PrefabInstance:
   m_ObjectHideFlags: 0
