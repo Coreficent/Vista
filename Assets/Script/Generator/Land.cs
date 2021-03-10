@@ -6,7 +6,7 @@
     public class Land
     {
         private List<Vector3> positions = new List<Vector3>();
-        private int radius = 0;
+        private int size = 0;
         private int index = 0;
 
         private Board board;
@@ -17,15 +17,15 @@
             this.factory = factory;
         }
 
-        public int Radius
+        public int Size
         {
-            get { return radius; }
+            get { return size; }
             set
             {
-                radius = value;
-                for (var x = 0; x < radius; ++x)
+                size = value;
+                for (var x = 0; x < size; ++x)
                 {
-                    for (var y = 0; y < radius; ++y)
+                    for (var y = 0; y < size; ++y)
                     {
                         positions.Add(new Vector3(x, y, 0.0f));
                     }
@@ -35,7 +35,7 @@
 
         public bool HasNext()
         {
-            return index < radius * radius;
+            return index < size * size;
         }
 
         public void Next()

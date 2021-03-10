@@ -9,13 +9,19 @@
     public class Board : ReinforcedBehavior
     {
         [SerializeField]
-        private int radius;
+        private int size;
 
         private Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
 
-        public int Radius
+        protected virtual void Start()
         {
-            get { return radius; }
+            DebugUtility.Assert("board size validation", size != 0);
+        }
+
+
+        public int Size
+        {
+            get { return size; }
         }
 
         public TileBase Place(Vector3 position, TileBase tileType)
@@ -38,7 +44,7 @@
         }
         public Vector3 RandomPosition()
         {
-            return new Vector3(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), 0.0f);
+            return new Vector3(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Size - 1)), Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Size - 1)), 0.0f);
         }
 
         public TileBase RandomTile()

@@ -12,6 +12,9 @@
     public class Main : ReinforcedBehavior
     {
         [SerializeField]
+        private Camera mainCamera;
+
+        [SerializeField]
         private Board board;
 
         [SerializeField]
@@ -43,8 +46,10 @@
             land = new Land(board, factory); ;
             doodad = new Doodad(board, factory);
             track = new Track(board, factory);
-            land.Radius = board.Radius;
-            doodad.Radius = board.Radius;
+            float center = board.Size % 2 == 0 ? board.Size / 2 - 0.5f : board.Size / 2 + 0.0f;
+            mainCamera.transform.position = new Vector3(center, center, -board.Size);
+            land.Size = board.Size;
+            doodad.Size = board.Size;
             timeController.Reset();
         }
 

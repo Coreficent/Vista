@@ -4,7 +4,7 @@
 
     public class Doodad
     {
-        private int radius = 0;
+        private int size = 0;
         private int doodadCount = 0;
 
         private Board board;
@@ -16,13 +16,13 @@
             this.factory = factory;
         }
 
-        public int Radius
+        public int Size
         {
-            get { return radius; }
+            get { return size; }
             set
             {
-                radius = value;
-                doodadCount = radius + radius;
+                size = value;
+                doodadCount = size + size;
             }
         }
 
