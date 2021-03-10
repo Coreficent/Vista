@@ -5,30 +5,27 @@
 
     public class RoadStraight : TileBase
     {
-        public override List<Neighbor> Neighbors
+        public override List<Neighbor> Neighbors(Factory factory)
         {
-            get
-            {
-                List<Neighbor> neighbors = new List<Neighbor>();
+            List<Neighbor> neighbors = new List<Neighbor>();
 
-                Neighbor[] north = new Neighbor[] {
-                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = Factory.RoadStraight, Rotation = CumulateRotation(0.0f) },
-                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = Factory.RoadCorner, Rotation = CumulateRotation(90.0f) },
-                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = Factory.RoadCorner, Rotation = CumulateRotation(180.0f) }
+            Neighbor[] north = new Neighbor[] {
+                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = factory.roadStraight, Rotation = CumulateRotation(0.0f) },
+                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = factory.roadCorner, Rotation = CumulateRotation(90.0f) },
+                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = factory.roadCorner, Rotation = CumulateRotation(180.0f) }
                 };
 
-                neighbors.Add(Pick(north));
+            neighbors.Add(Pick(north));
 
-                Neighbor[] south = new Neighbor[] {
-                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = Factory.RoadStraight, Rotation = CumulateRotation(0.0f)},
-                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = Factory.RoadCorner, Rotation = CumulateRotation(0.0f) },
-                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = Factory.RoadCorner, Rotation = CumulateRotation(270.0f) }
+            Neighbor[] south = new Neighbor[] {
+                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = factory.roadStraight, Rotation = CumulateRotation(0.0f)},
+                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = factory.roadCorner, Rotation = CumulateRotation(0.0f) },
+                    new Neighbor() { Offset = RotateOffset(1.0f, 180.0f), Tile = factory.roadCorner, Rotation = CumulateRotation(270.0f) }
                 };
 
-                neighbors.Add(Pick(south));
+            neighbors.Add(Pick(south));
 
-                return neighbors;
-            }
+            return neighbors;
         }
     }
 }

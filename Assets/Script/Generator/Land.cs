@@ -40,7 +40,7 @@
 
         public void Next()
         {
-            board.Place(positions[index++], factory.Create(Factory.Grass));
+            board.Place(positions[index++], factory.grass);
         }
     }
 }

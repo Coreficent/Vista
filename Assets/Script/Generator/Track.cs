@@ -42,7 +42,7 @@
                 return;
             }
 
-            foreach (Neighbor i in parent.Neighbors)
+            foreach (Neighbor i in parent.Neighbors(factory))
             {
 
                 Vector3 position = parent.transform.position + i.Offset;
@@ -51,7 +51,7 @@
                 {
                     if (!set.Contains(TileBase.HashNameFromPosition(position)))
                     {
-                        TileBase tileBase = board.Replace(position, factory.Create(i.Tile));
+                        TileBase tileBase = board.Replace(position, i.Tile);
                         tileBase.transform.eulerAngles = new Vector3(0.0f, 0.0f, i.Rotation);
 
                         task.Push(tileBase);

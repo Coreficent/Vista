@@ -1,5 +1,6 @@
 ﻿namespace Coreficent.Tile
 {
+    using Coreficent.Generator;
     using Coreficent.Utility;
     using System.Collections.Generic;
     using UnityEngine;
@@ -20,12 +21,9 @@
 
             return result;
         }
-        public virtual List<Neighbor> Neighbors
+        public virtual List<Neighbor> Neighbors(Factory factory)
         {
-            get
-            {
-                return new List<Neighbor>();
-            }
+            return new List<Neighbor>();
         }
 
         public string HashName

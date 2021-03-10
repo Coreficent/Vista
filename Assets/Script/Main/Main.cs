@@ -4,8 +4,6 @@
     using Coreficent.Generator;
     using Coreficent.Tile;
     using Coreficent.Utility;
-    using System;
-    using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.SceneManagement;
 
@@ -73,7 +71,7 @@
                         if (!Iterate(doodad, 1000))
                         {
                             Vector3 position = board.RandomPosition();
-                            TileBase riverTile = board.Replace(position, factory.Create(Factory.RiverStraight));
+                            TileBase riverTile = board.Replace(position, factory.riverStraight);
                             river.Add(riverTile);
 
                             state = GenerationState.River;
@@ -84,7 +82,7 @@
                         if (!Iterate(river, 1))
                         {
                             Vector3 position = board.RandomPosition();
-                            TileBase roadTile = board.Replace(position, factory.Create(Factory.RoadStraight));
+                            TileBase roadTile = board.Replace(position, factory.roadStraight);
                             road.Add(roadTile);
 
                             state = GenerationState.Road;

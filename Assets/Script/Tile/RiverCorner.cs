@@ -5,26 +5,23 @@
 
     public class RiverCorner : TileBase
     {
-        public override List<Neighbor> Neighbors
+        public override List<Neighbor> Neighbors(Factory factory)
         {
-            get
-            {
-                List<Neighbor> neighbors = new List<Neighbor>();
+            List<Neighbor> neighbors = new List<Neighbor>();
 
-                Neighbor[] north = new Neighbor[] {
-                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(0.0f) },
+            Neighbor[] north = new Neighbor[] {
+                    new Neighbor() { Offset = RotateOffset(1.0f, 0.0f), Tile = factory.riverStraight, Rotation = CumulateRotation(0.0f) },
                 };
 
-                neighbors.Add(Pick(north));
+            neighbors.Add(Pick(north));
 
-                Neighbor[] west = new Neighbor[] {
-                    new Neighbor() { Offset = RotateOffset(1.0f, 90.0f), Tile = Factory.RiverStraight, Rotation = CumulateRotation(270.0f) },
+            Neighbor[] west = new Neighbor[] {
+                    new Neighbor() { Offset = RotateOffset(1.0f, 90.0f), Tile = factory.riverStraight, Rotation = CumulateRotation(270.0f) },
                 };
 
-                neighbors.Add(Pick(west));
+            neighbors.Add(Pick(west));
 
-                return neighbors;
-            }
+            return neighbors;
         }
     }
 }

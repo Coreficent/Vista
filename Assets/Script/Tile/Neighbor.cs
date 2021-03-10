@@ -5,7 +5,7 @@
     public class Neighbor
     {
         public Vector3 Offset;
-        public string Tile;
+        public TileBase Tile;
         public float Rotation;
         public int weight;
     }

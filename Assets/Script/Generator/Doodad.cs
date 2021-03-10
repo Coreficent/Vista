@@ -34,7 +34,7 @@
         public void Next()
         {
             --doodadCount;
-            board.Replace(board.RandomPosition(), factory.Create(Factory.Tower));
+            board.Replace(board.RandomPosition(), factory.tower);
         }
     }
 }
