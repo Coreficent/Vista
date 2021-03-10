@@ -7,17 +7,21 @@
 
     public class Factory : ReinforcedBehavior
     {
-        public static string GRASS = "Grass";
-
+        public static string Grass = "Grass";
+        public static string Tower = "Tower";
 
         [SerializeField]
         private TileBase grass;
+
+        [SerializeField]
+        private TileBase tower;
 
         private Dictionary<string, TileBase> tiles = new Dictionary<string, TileBase>();
 
         protected virtual void Start()
         {
-            tiles[GRASS] = grass;
+            tiles[Grass] = grass;
+            tiles[Tower] = tower;
         }
 
         public TileBase Create(string name)

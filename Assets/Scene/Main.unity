@@ -152,8 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   board: {fileID: 513397987}
   factory: {fileID: 1653958999}
-  Tower1: {fileID: 8102924231879215983, guid: 12f64f93692f0da459284a8c074758f3, type: 3}
-  River1: {fileID: 129600928667786536, guid: 2b92efc23f83d2142b648a9a6acb1c64, type: 3}
 --- !u!4 &432189074
 Transform:
   m_ObjectHideFlags: 0
@@ -198,10 +196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 7
-  geneses:
-  - {fileID: 2856165973383886931, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
-  - {fileID: 129600928667786536, guid: 2b92efc23f83d2142b648a9a6acb1c64, type: 3}
-  - {fileID: 1688041337545743247, guid: 54f189e1f603a85419aad008b8c0d672, type: 3}
 --- !u!4 &513397988
 Transform:
   m_ObjectHideFlags: 0
@@ -434,4 +428,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5089569de945d247a64fe2b86542be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grass: {fileID: 2856165973383886931, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
+  grass: {fileID: 564928239478745917, guid: 1089e7ef08b6b4d4baabe4a479f04c50, type: 3}
+  tower: {fileID: 7359759808696083322, guid: 7e022788c25b71941947eca413ee6a39, type: 3}

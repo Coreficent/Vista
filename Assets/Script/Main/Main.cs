@@ -16,18 +16,11 @@
         [SerializeField]
         private Factory factory;
 
-        public TileBase Tower1;
-        public TileBase River1;
-
         private HashSet<Vector3> set = new HashSet<Vector3>();
 
         private readonly TimeController timeController = new TimeController();
-
-
         private int towerCount = 0;
-
         private float timeGap = 0.01f;
-
         private Queue<Tuple<Vector3, TileBase>> queue = new Queue<Tuple<Vector3, TileBase>>();
 
 
@@ -60,7 +53,7 @@
                     case GenerationState.Land:
                         if (land.HasNext())
                         {
-                            board.Place(land.Next(), factory.Create(Factory.GRASS));
+                            board.Place(land.Next(), factory.Create(Factory.Grass));
                         }
                         else
                         {
@@ -72,7 +65,7 @@
                     case GenerationState.Tower:
                         if (towerCount > 0)
                         {
-                            board.Replace(board.Random(), Tower1);
+                            board.Replace(board.Random(), factory.Create(Factory.Tower));
                         }
                         else
                         {

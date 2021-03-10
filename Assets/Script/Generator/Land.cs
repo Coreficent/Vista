@@ -23,7 +23,7 @@
                 {
                     for (var y = 0; y < radius; ++y)
                     {
-                        positions.Add(new Vector3(x, 0.0f, y));
+                        positions.Add(new Vector3(x, y, 0.0f));
                     }
                 }
             }

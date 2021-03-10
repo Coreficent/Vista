@@ -120,7 +120,7 @@
 
         public Vector3 Random()
         {
-            return new Vector3(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), 0.0f, Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)));
+            return new Vector3(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), 0.0f);
         }
 
 
