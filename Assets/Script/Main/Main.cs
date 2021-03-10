@@ -41,7 +41,7 @@
         {
             land = new Land(board, factory); ;
             doodad = new Doodad(board, factory);
-            track = new Track(board);
+            track = new Track(board, factory);
             land.Radius = board.Radius;
             doodad.Radius = board.Radius;
             timeController.Reset();

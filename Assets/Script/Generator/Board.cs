@@ -9,6 +9,9 @@
     public class Board : ReinforcedBehavior
     {
         [SerializeField]
+        private TileBase empty;
+
+        [SerializeField]
         private int radius;
 
         private Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
@@ -144,9 +147,15 @@
         //    return null;
         //}
 
-        public bool ValidRange(Vector2Int position)
+        //public bool ValidRange(Vector2Int position)
+        //{
+        //    return position.x < Radius && position.y < Radius && position.x >= 0 && position.y >= 0;
+        //}
+
+        public bool ValidPosition(Vector3 position)
         {
-            return position.x < Radius && position.y < Radius && position.x >= 0 && position.y >= 0;
+            empty.transform.position = position;
+            return map.ContainsKey(empty.HashName);
         }
     }
 }
