@@ -37,20 +37,29 @@
 
             TileBase middle = board.GetTile(position);
             TileBase north = board.GetNorthTile(position);
-            TileBase south = board.GetSouthTile(position);
             TileBase west = board.GetWestTile(position);
+            TileBase south = board.GetSouthTile(position);
             TileBase east = board.GetEastTile(position);
 
             // DebugUtility.Log("all tiles", middle, north, south, west, east);
 
+            Rectify(middle, north, west, south, east, 0.0f);
+            Rectify(middle, west, south, east, north, 90.0f);
+            Rectify(middle, south, east, north, west, 180.0f);
+            Rectify(middle, east, north, west, south, 270.0f);
+        }
+
+        private void Rectify(TileBase middle, TileBase north, TileBase west, TileBase south, TileBase east, float angle)
+        {
             if (middle is RoadStraight)
             {
-                if (Mathf.Approximately(middle.transform.eulerAngles.z, 0.0f))
+                if (Mathf.Approximately(middle.transform.eulerAngles.z, angle))
                 {
                     if ((west is RiverCorner || west is RiverStraight) && (east is RiverCorner || east is RiverStraight))
                     {
                         DebugUtility.Log("replacing");
-                        board.Replace(position, factory.Bridge);
+                        TileBase rectifiedTile = board.Replace(middle.transform.position, factory.Bridge);
+                        rectifiedTile.transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
                     }
                 }
             }
