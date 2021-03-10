@@ -23,6 +23,20 @@
                 {
                     if ((west is RiverCorner || west is RiverStraight) && (east is RiverCorner || east is RiverStraight))
                     {
+                        if (west is RiverStraight)
+                        {
+                            if (Mathf.Approximately(Mathf.Abs(middle.transform.eulerAngles.z), Mathf.Abs(west.transform.eulerAngles.z)))
+                            {
+                                return false;
+                            }
+                        }
+                        if (east is RiverStraight)
+                        {
+                            if (Mathf.Approximately(Mathf.Abs(middle.transform.eulerAngles.z), Mathf.Abs(east.transform.eulerAngles.z)))
+                            {
+                                return false;
+                            }
+                        }
                         return true;
                     }
                 }
