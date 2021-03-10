@@ -22,8 +22,6 @@
 
         private readonly TimeController timeController = new TimeController();
 
-        private float timeGap = 0.01f;
-
         private Land land;
         private Doodad doodad;
         private Track river;
@@ -51,6 +49,7 @@
             land.Size = board.Size;
             doodad.Size = board.Size;
             timeController.Reset();
+            timeController.SetTime(0.01f);
         }
 
         protected virtual void Update()
@@ -60,21 +59,19 @@
                 SceneManager.LoadScene("Main");
             }
 
-            if (timeController.TimePassed > timeGap)
+            if (timeController.Reached)
             {
                 switch (state)
                 {
                     case GenerationState.Land:
                         if (!Iterate(land))
                         {
-                            timeGap = 0.01f;
                             state = GenerationState.Doodad;
                         }
                         break;
                     case GenerationState.Doodad:
                         if (!Iterate(doodad))
                         {
-                            timeGap = 0.01f;
                             Vector3 position = board.RandomPosition();
                             TileBase riverTile = board.Replace(position, factory.Create(Factory.RiverStraight));
                             river.Add(riverTile);
@@ -90,14 +87,12 @@
                             TileBase roadTile = board.Replace(position, factory.Create(Factory.RiverStraight));
                             road.Add(roadTile);
 
-                            timeGap = 0.1f;
                             state = GenerationState.Road;
                         }
                         break;
                     case GenerationState.Road:
                         if (!Iterate(road))
                         {
-                            timeGap = 0.1f;
                             state = GenerationState.Vista;
                         }
 
