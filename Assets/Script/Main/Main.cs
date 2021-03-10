@@ -19,7 +19,7 @@
         public TileBase Tower1;
         public TileBase River1;
 
-        private HashSet<Vector2Int> set = new HashSet<Vector2Int>();
+        private HashSet<Vector3> set = new HashSet<Vector3>();
 
         private readonly TimeController timeController = new TimeController();
 
@@ -28,7 +28,7 @@
 
         private float timeGap = 0.01f;
 
-        private Queue<Tuple<Vector2Int, TileBase>> queue = new Queue<Tuple<Vector2Int, TileBase>>();
+        private Queue<Tuple<Vector3, TileBase>> queue = new Queue<Tuple<Vector3, TileBase>>();
 
 
         private Land land = new Land();
@@ -77,8 +77,8 @@
                         else
                         {
                             timeGap = 0.01f;
-                            Vector2Int position = board.Random();
-                            queue.Enqueue(new Tuple<Vector2Int, TileBase>(position, River1)); ;
+                            Vector3 position = board.Random();
+                            //queue.Enqueue(new Tuple<Vector3, TileBase>(position, River1)); ;
                             set.Add(position);
                             state = GenerationState.River;
                         }
@@ -89,83 +89,83 @@
 
                     case GenerationState.River:
 
-                        if (queue.Count > 0)
-                        {
-                            var rootedGenesis = queue.Dequeue();
-                            Vector2Int position = rootedGenesis.Item1;
-                            TileBase genesis = rootedGenesis.Item2;
+                        //if (queue.Count > 0)
+                        //{
+                        //    var rootedGenesis = queue.Dequeue();
+                        //    Vector3 position = rootedGenesis.Item1;
+                        //    TileBase genesis = rootedGenesis.Item2;
 
-                            board.Replace(position, genesis);
+                        //    board.Replace(position, genesis);
 
-                            if (genesis.North.Count > 0)
-                            {
-                                float offset = 1.0f;
-                                float angleOffset = 0.0f;
-                                Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
-                                if (board.ValidRange(newPosition))
-                                {
-                                    if (!set.Contains(newPosition))
-                                    {
-                                        queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.North[UnityEngine.Random.Range(0, genesis.North.Count)]));
-                                        set.Add(newPosition);
-                                    }
-                                }
-                            }
+                        //    if (genesis.North.Count > 0)
+                        //    {
+                        //        float offset = 1.0f;
+                        //        float angleOffset = 0.0f;
+                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
+                        //        if (board.ValidRange(newPosition))
+                        //        {
+                        //            if (!set.Contains(newPosition))
+                        //            {
+                        //                queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.North[UnityEngine.Random.Range(0, genesis.North.Count)]));
+                        //                set.Add(newPosition);
+                        //            }
+                        //        }
+                        //    }
 
-                            if (genesis.East.Count > 0)
-                            {
-                                float offset = 1.0f;
-                                float angleOffset = 90.0f;
-                                Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
-                                {
-                                    if (board.ValidRange(newPosition))
-                                    {
-                                        if (!set.Contains(newPosition))
-                                        {
-                                            queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.East[UnityEngine.Random.Range(0, genesis.East.Count)]));
-                                            set.Add(newPosition);
-                                        }
-                                    }
-                                }
-                            }
-                            if (genesis.South.Count > 0)
-                            {
-                                float offset = 1.0f;
-                                float angleOffset = 180.0f;
-                                Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
+                        //    if (genesis.East.Count > 0)
+                        //    {
+                        //        float offset = 1.0f;
+                        //        float angleOffset = 90.0f;
+                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
+                        //        {
+                        //            if (board.ValidRange(newPosition))
+                        //            {
+                        //                if (!set.Contains(newPosition))
+                        //                {
+                        //                    queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.East[UnityEngine.Random.Range(0, genesis.East.Count)]));
+                        //                    set.Add(newPosition);
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //    if (genesis.South.Count > 0)
+                        //    {
+                        //        float offset = 1.0f;
+                        //        float angleOffset = 180.0f;
+                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
 
-                                if (board.ValidRange(newPosition))
-                                {
-                                    if (!set.Contains(newPosition))
-                                    {
-                                        queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.South[UnityEngine.Random.Range(0, genesis.South.Count)]));
-                                        set.Add(newPosition);
-                                    }
-                                }
-                            }
-                            if (genesis.West.Count > 0)
-                            {
-                                float offset = 1.0f;
-                                float angleOffset = 270.0f;
-                                Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
+                        //        if (board.ValidRange(newPosition))
+                        //        {
+                        //            if (!set.Contains(newPosition))
+                        //            {
+                        //                queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.South[UnityEngine.Random.Range(0, genesis.South.Count)]));
+                        //                set.Add(newPosition);
+                        //            }
+                        //        }
+                        //    }
+                        //    if (genesis.West.Count > 0)
+                        //    {
+                        //        float offset = 1.0f;
+                        //        float angleOffset = 270.0f;
+                        //        Vector2Int newPosition = new Vector2Int(position.x + Mathf.RoundToInt(Mathf.Sin((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset), position.y + Mathf.RoundToInt(Mathf.Cos((transform.eulerAngles.y + angleOffset) * Mathf.Deg2Rad) * offset));
 
-                                DebugUtility.Bug("go west", newPosition);
+                        //        DebugUtility.Bug("go west", newPosition);
 
-                                if (board.ValidRange(newPosition))
-                                {
-                                    if (!set.Contains(newPosition))
-                                    {
-                                        queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.West[UnityEngine.Random.Range(0, genesis.West.Count)]));
-                                        set.Add(newPosition);
-                                    }
-                                }
-                            }
+                        //        if (board.ValidRange(newPosition))
+                        //        {
+                        //            if (!set.Contains(newPosition))
+                        //            {
+                        //                queue.Enqueue(new Tuple<Vector2Int, TileBase>(newPosition, genesis.West[UnityEngine.Random.Range(0, genesis.West.Count)]));
+                        //                set.Add(newPosition);
+                        //            }
+                        //        }
+                        //    }
 
-                        }
-                        else
-                        {
-                            state = GenerationState.Vista;
-                        }
+                        //}
+                        //else
+                        //{
+                        //    state = GenerationState.Vista;
+                        //}
 
                         break;
 

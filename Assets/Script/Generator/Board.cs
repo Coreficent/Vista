@@ -25,10 +25,10 @@
             map[instance.HashName] = instance;
         }
 
-        public void Replace(Vector2Int position, TileBase tile)
+        public void Replace(Vector3 position, TileBase tile)
         {
             TileBase instance = Instantiate(tile);
-            instance.transform.position = new Vector3(position.x, 0, position.y);
+            instance.transform.position = position;
             Destroy(map[instance.HashName].gameObject);
             map[instance.HashName] = instance;
         }
@@ -118,9 +118,9 @@
         //    //board[position.x, position.y].transform.eulerAngles = new Vector3(0.0f, 90.0f * UnityEngine.Random.Range(0, 4), 0.0f);
         //}
 
-        public Vector2Int Random()
+        public Vector3 Random()
         {
-            return new Vector2Int(UnityEngine.Random.Range(0, Radius), UnityEngine.Random.Range(0, Radius));
+            return new Vector3(Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)), 0.0f, Mathf.RoundToInt(UnityEngine.Random.Range(0.0f, Radius - 1)));
         }
 
 
