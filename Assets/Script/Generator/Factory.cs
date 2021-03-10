@@ -11,5 +11,6 @@
         public TileBase RoadCorner;
         public TileBase RoadStraight;
         public TileBase Tower;
+        public TileBase Bridge;
     }
 }

@@ -23,6 +23,7 @@
         private Doodad doodad;
         private Track river;
         private Track road;
+        private Rectifier rectifier;
 
         private enum GenerationState
         {
@@ -30,6 +31,7 @@
             Doodad,
             River,
             Road,
+            Rectification,
             Vista
         }
 
@@ -41,6 +43,7 @@
             doodad = new Doodad(board, factory);
             river = new Track(board, factory, factory.RiverStraight, board.Size * 2);
             road = new Track(board, factory, factory.RoadStraight, board.Size * 4);
+            rectifier = new Rectifier(board, factory);
             float center = board.Size % 2 == 0 ? board.Size / 2 - 0.5f : board.Size / 2 + 0.0f;
             mainCamera.transform.position = new Vector3(center, center, -board.Size);
             land.Size = board.Size;
@@ -69,20 +72,30 @@
                     case GenerationState.Doodad:
                         if (!Iterate(doodad, 1000))
                         {
-                            river.StageTrack();
+                            river.Stage();
                             state = GenerationState.River;
                         }
                         break;
 
                     case GenerationState.River:
-                        if (!Iterate(river, 1))
+                        if (!Iterate(river, 1000))
                         {
-                            road.StageTrack();
+                            road.Stage();
                             state = GenerationState.Road;
                         }
                         break;
                     case GenerationState.Road:
-                        if (!Iterate(road, 1))
+                        if (!Iterate(road, 1000))
+                        {
+                            rectifier.Stage();
+                            state = GenerationState.Rectification;
+                        }
+                        break;
+
+                    case GenerationState.Rectification:
+                        DebugUtility.Log("rectifying");
+
+                        if (!Iterate(rectifier, 1))
                         {
                             state = GenerationState.Vista;
                         }

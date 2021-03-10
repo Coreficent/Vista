@@ -32,7 +32,7 @@
             {
                 if (currentCount < minimumCount)
                 {
-                    StageTrack();
+                    Stage();
                 }
                 else
                 {
@@ -75,7 +75,7 @@
             }
         }
 
-        public void StageTrack()
+        public void Stage()
         {
             Vector3 position = board.RandomPosition();
             TileBase riverTile = board.Replace(position, tileType);

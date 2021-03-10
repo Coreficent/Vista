@@ -439,3 +439,4 @@ MonoBehaviour:
   RoadStraight: {fileID: 2931913318895391388, guid: 3889f9b221d796f4c88454dbb2cf6d38,
     type: 3}
   Tower: {fileID: 7359759808696083322, guid: 7e022788c25b71941947eca413ee6a39, type: 3}
+  Bridge: {fileID: 1617041475448728099, guid: cac0cb83754f0bc4080df88ab1947ee5, type: 3}

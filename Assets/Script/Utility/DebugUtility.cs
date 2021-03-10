@@ -67,24 +67,33 @@
                 {
                     message += _delimiter;
 
-                    if (i.GetType().GetInterface(nameof(ICollection)) != null)
+                    if (i == null)
                     {
-                        message += "[";
-                        IEnumerable enumerable = (i as IEnumerable);
-
-                        foreach (var item in enumerable)
-                        {
-                            message += item;
-                            message += ",";
-                        }
-                        //message += string.Join(",", enumerable);
-
-                        message += "]";
+                        message += "null";
                     }
                     else
                     {
-                        message += i;
+                        if (i.GetType().GetInterface(nameof(ICollection)) != null)
+                        {
+                            message += "[";
+                            IEnumerable enumerable = (i as IEnumerable);
+
+                            foreach (var item in enumerable)
+                            {
+                                message += item;
+                                message += ",";
+                            }
+                            //message += string.Join(",", enumerable);
+
+                            message += "]";
+                        }
+                        else
+                        {
+                            message += i;
+                        }
                     }
+
+
                 }
 
                 switch (messageType)
