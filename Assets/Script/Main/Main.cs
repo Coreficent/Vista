@@ -19,7 +19,6 @@
         private HashSet<Vector3> set = new HashSet<Vector3>();
 
         private readonly TimeController timeController = new TimeController();
-        private int towerCount = 0;
         private float timeGap = 0.01f;
         private Queue<Tuple<Vector3, TileBase>> queue = new Queue<Tuple<Vector3, TileBase>>();
 
@@ -58,7 +57,6 @@
                         else
                         {
                             timeGap = 0.01f;
-                            towerCount = board.Radius;
                             state = GenerationState.Doodad;
                         }
                         break;
