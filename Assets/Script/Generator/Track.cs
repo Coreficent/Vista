@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class Track
+    public class Track : IIterator
     {
         private Stack<TileBase> task = new Stack<TileBase>();
         private HashSet<string> set = new HashSet<string>();

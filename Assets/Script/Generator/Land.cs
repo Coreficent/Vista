@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class Land
+    public class Land : IIterator
     {
         private List<Vector3> positions = new List<Vector3>();
         private int size = 0;

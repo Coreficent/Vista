@@ -2,7 +2,7 @@
 {
     using UnityEngine;
 
-    public class Doodad
+    public class Doodad : IIterator
     {
         private int size = 0;
         private int doodadCount = 0;

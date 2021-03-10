@@ -20,12 +20,9 @@
         [SerializeField]
         private Factory factory;
 
-        private HashSet<Vector3> set = new HashSet<Vector3>();
-
         private readonly TimeController timeController = new TimeController();
-        private float timeGap = 0.01f;
-        private Queue<Tuple<Vector3, TileBase>> queue = new Queue<Tuple<Vector3, TileBase>>();
 
+        private float timeGap = 0.01f;
 
         private Land land;
         private Doodad doodad;
