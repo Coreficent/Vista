@@ -12,6 +12,6 @@
         public TileBase RoadStraight;
         public TileBase Tower;
         public TileBase Bridge;
-        public TileBase RoadTIntersection;
+        public TileBase RoadIntersection;
     }
 }

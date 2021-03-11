@@ -5,6 +5,7 @@
     using Coreficent.Utility;
     using UnityEngine;
     using UnityEngine.SceneManagement;
+    using UnityEngine.UI;
 
     public class Main : ReinforcedBehavior
     {
@@ -16,6 +17,11 @@
 
         [SerializeField]
         private Factory factory;
+
+        [SerializeField]
+        private Text text;
+
+        private string statePrefix = "State: ";
 
         private readonly TimeController timeController = new TimeController();
 
@@ -48,6 +54,7 @@
             mainCamera.transform.position = new Vector3(center, center, -board.Size);
             land.Size = board.Size;
             doodad.Size = board.Size;
+            text.text = statePrefix + "Generating Land";
             timeController.Reset();
             timeController.SetTime(0.01f);
         }
@@ -66,6 +73,7 @@
                     case GenerationState.Land:
                         if (!Iterate(land, 1000))
                         {
+                            text.text = statePrefix + "Generating Doodad";
                             state = GenerationState.Doodad;
                         }
                         break;
@@ -73,6 +81,7 @@
                         if (!Iterate(doodad, 1000))
                         {
                             river.Stage();
+                            text.text = statePrefix + "Generating River";
                             state = GenerationState.River;
                         }
                         break;
@@ -81,6 +90,7 @@
                         if (!Iterate(river, 1000))
                         {
                             road.Stage();
+                            text.text = statePrefix + "Generating Road";
                             state = GenerationState.Road;
                         }
                         break;
@@ -88,6 +98,7 @@
                         if (!Iterate(road, 1000))
                         {
                             rectifier.Stage();
+                            text.text = statePrefix + "Rectifying Scene";
                             state = GenerationState.Rectification;
                         }
                         break;
@@ -97,12 +108,12 @@
 
                         if (!Iterate(rectifier, 1))
                         {
+                            text.text = statePrefix + "Complete";
                             state = GenerationState.Vista;
                         }
                         break;
 
                     case GenerationState.Vista:
-
                         float rotateAngle = 30.0f;
                         float rotateSpeed = 15.0f;
 
@@ -110,9 +121,6 @@
                         {
                             board.transform.eulerAngles += new Vector3(rotateSpeed * Time.deltaTime, 0.0f, 0.0f);
                         }
-
-                        DebugUtility.Log("Vista");
-
                         break;
 
                     default:

@@ -34,6 +34,11 @@
             return Mathf.Approximately(ClampAngle(middle.transform.eulerAngles.z), ClampAngle(other.transform.eulerAngles.z));
         }
 
+        private static bool FacingOppositeDirection(TileBase middle, TileBase other)
+        {
+            return Mathf.Approximately(Mathf.Abs(ClampAngle(middle.transform.eulerAngles.z) - ClampAngle(other.transform.eulerAngles.z)), 180.0f);
+        }
+
         private Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> bridge = (middle, north, west, south, east, angle) =>
         {
             if (Mathf.Approximately(middle.transform.eulerAngles.z, angle))
@@ -65,22 +70,52 @@
             return false;
         };
 
-        private Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> tIntersection = (middle, north, west, south, east, angle) =>
+        private Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> intersection = (middle, north, west, south, east, angle) =>
         {
             if (Mathf.Approximately(middle.transform.eulerAngles.z, angle))
             {
                 if (middle is RoadStraight)
                 {
-                    if (north is RoadStraight && south is RoadStraight)
+                    if (east is RoadStraight)
                     {
-                        if (east is RoadStraight)
+                        if (!FacingSameDirection(middle, east) && !FacingOppositeDirection(middle, east))
                         {
                             return true;
                         }
-                        //if (west is RoadStraight)
-                        //{
-                        //    return true;
-                        //}
+                    }
+                    if (west is RoadStraight)
+                    {
+                        if (!FacingSameDirection(middle, west) && !FacingOppositeDirection(middle, west))
+                        {
+                            return true;
+                        }
+                    }
+
+                }
+                if (middle is RoadCorner)
+                {
+                    int connectedCount = 0;
+
+                    if (north is RoadStraight)
+                    {
+                        ++connectedCount;
+                    }
+                    if (south is RoadStraight)
+                    {
+                        ++connectedCount;
+                    }
+                    if (west is RoadStraight)
+                    {
+                        ++connectedCount;
+                    }
+                    if (east is RoadStraight)
+                    {
+                        ++connectedCount;
+                    }
+
+                    if (connectedCount > 2)
+                    {
+                        return true;
                     }
                 }
             }
@@ -115,7 +150,7 @@
             Vector3 position = positions[currentIndex++];
 
             Rectify(position, factory.Bridge, bridge);
-            Rectify(position, factory.RoadTIntersection, tIntersection);
+            Rectify(position, factory.RoadIntersection, intersection);
         }
 
         private void Rectify(Vector3 position, TileBase rectification, Func<TileBase, TileBase, TileBase, TileBase, TileBase, float, bool> condition)
