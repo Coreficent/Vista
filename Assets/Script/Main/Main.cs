@@ -46,8 +46,8 @@
         {
             land = new Land(board, factory, Random.Range(0.025f, 0.75f)); ;
             doodad = new Doodad(board, factory, Random.Range(0.05f, 0.2f));
-            river = new Track(board, factory, factory.RiverStraight, board.Size * 2);
-            road = new Track(board, factory, factory.RoadStraight, board.Size * 4);
+            river = new Track(board, factory, factory.RiverStraight, Random.Range(0.05f, 0.10f));
+            road = new Track(board, factory, factory.RoadStraight, Random.Range(0.075f, 0.15f));
             rectifier = new Rectifier(board, factory);
             float center = board.Size % 2 == 0 ? board.Size / 2 - 0.5f : board.Size / 2 + 0.0f;
             mainCamera.transform.position = new Vector3(center, center, -board.Size);
@@ -69,14 +69,14 @@
                 switch (state)
                 {
                     case GenerationState.Land:
-                        if (!Iterate(land, 100))
+                        if (!Iterate(land, board.Size * 4))
                         {
                             text.text = statePrefix + "Generating Doodad";
                             state = GenerationState.Doodad;
                         }
                         break;
                     case GenerationState.Doodad:
-                        if (!Iterate(doodad, 10))
+                        if (!Iterate(doodad, board.Size))
                         {
                             river.Stage();
                             text.text = statePrefix + "Generating River";
@@ -85,7 +85,7 @@
                         break;
 
                     case GenerationState.River:
-                        if (!Iterate(river, 10))
+                        if (!Iterate(river, board.Size))
                         {
                             road.Stage();
                             text.text = statePrefix + "Generating Road";
@@ -93,7 +93,7 @@
                         }
                         break;
                     case GenerationState.Road:
-                        if (!Iterate(road, 10))
+                        if (!Iterate(road, board.Size))
                         {
                             rectifier.Stage();
                             text.text = statePrefix + "Rectifying Scene";
@@ -102,7 +102,7 @@
                         break;
 
                     case GenerationState.Rectification:
-                        if (!Iterate(rectifier, 100))
+                        if (!Iterate(rectifier, board.Size * 10))
                         {
                             text.text = statePrefix + "Complete. Use Q, E, and movement keys to move the camera.";
                             state = GenerationState.Vista;

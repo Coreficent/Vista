@@ -15,22 +15,22 @@
 
         private TileBase tileType;
 
-        private int minimumCount;
         private int currentCount = 0;
+        private float coverage;
 
-        public Track(Board board, Factory factory, TileBase tileType, int minimumCount)
+        public Track(Board board, Factory factory, TileBase tileType, float coverage)
         {
             this.board = board;
             this.factory = factory;
             this.tileType = tileType;
-            this.minimumCount = minimumCount;
+            this.coverage = coverage;
         }
 
         public bool HasNext()
         {
             if (!(task.Count > 0))
             {
-                if (currentCount < minimumCount)
+                if (currentCount < board.Size * board.Size * coverage)
                 {
                     Stage();
                 }
