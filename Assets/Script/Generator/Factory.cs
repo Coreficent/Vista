@@ -10,7 +10,6 @@
         public TileBase RiverStraight;
         public TileBase RoadCorner;
         public TileBase RoadStraight;
-        public TileBase Tower;
         public TileBase Bridge;
         public TileBase RoadIntersection;
         public TileBase Bush;
@@ -19,5 +18,13 @@
         public TileBase TreeSingle;
         public TileBase TreeDouble;
         public TileBase TreeTriple;
+        public TileBase BlueTowerSmall;
+        public TileBase BlueTowerMedium;
+        public TileBase BlueTowerLarge;
+        public TileBase BlueTowerHuge;
+        public TileBase RedTowerSmall;
+        public TileBase RedTowerMedium;
+        public TileBase RedTowerLarge;
+        public TileBase RedTowerHuge;
     }
 }

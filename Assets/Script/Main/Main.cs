@@ -114,12 +114,12 @@
                         break;
 
                     case GenerationState.Vista:
-                        float rotateAngle = 30.0f;
-                        float rotateSpeed = 15.0f;
+                        float offset = 30.0f;
+                        float speed = 15.0f;
 
-                        if (board.transform.eulerAngles.x < rotateAngle)
+                        if (board.transform.eulerAngles.x < offset)
                         {
-                            board.transform.eulerAngles += new Vector3(rotateSpeed * Time.deltaTime, 0.0f, 0.0f);
+                            board.transform.eulerAngles += new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
                         }
                         break;
 
