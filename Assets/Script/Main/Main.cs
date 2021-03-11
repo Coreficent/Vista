@@ -45,7 +45,7 @@
         protected virtual void Start()
         {
             land = new Land(board, factory); ;
-            doodad = new Doodad(board, factory);
+            doodad = new Doodad(board, factory, Random.Range(0.1f, 0.2f));
             river = new Track(board, factory, factory.RiverStraight, board.Size * 2);
             road = new Track(board, factory, factory.RoadStraight, board.Size * 4);
             rectifier = new Rectifier(board, factory);

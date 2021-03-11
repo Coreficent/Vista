@@ -12,12 +12,13 @@
         private bool placedRed = false;
         private bool placedBlue = false;
 
-        private float towerCoverage = 0.25f;
+        private float towerCoverage;
 
-        public Doodad(Board board, Factory factory)
+        public Doodad(Board board, Factory factory, float towerCoverage)
         {
             this.board = board;
             this.factory = factory;
+            this.towerCoverage = towerCoverage;
         }
 
         public bool HasNext()
@@ -49,7 +50,7 @@
                 {
                     board.Replace(position, factory.RedTowerLarge);
                 }
-                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 2.0f))
+                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 1.5f))
                 {
                     board.Replace(position, factory.RedTowerMedium);
                 }
@@ -76,7 +77,7 @@
                 {
                     board.Replace(position, factory.BlueTowerLarge);
                 }
-                else if (position.x < Random.Range(0.0f, board.Size / 2.0f))
+                else if (position.x < Random.Range(0.0f, board.Size / 1.5f))
                 {
                     board.Replace(position, factory.BlueTowerMedium);
                 }
