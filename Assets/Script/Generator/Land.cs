@@ -9,13 +9,16 @@
         private int size = 0;
         private int index = 0;
 
-        private Board board;
-        private Factory factory;
+        private readonly Board board;
+        private readonly Factory factory;
 
-        public Land(Board board, Factory factory)
+        private float coverage;
+
+        public Land(Board board, Factory factory, float coverage)
         {
             this.board = board;
             this.factory = factory;
+            this.coverage = coverage;
         }
 
         public int Size
@@ -43,27 +46,27 @@
         {
             float chance = Random.Range(0.0f, 1.0f);
 
-            if (chance < 0.0125f)
+            if (chance < 0.05f)
             {
                 board.Place(positions[index++], factory.Hill);
             }
-            else if (chance < 0.025f)
+            else if (chance < 0.1f * coverage)
             {
                 board.Place(positions[index++], factory.Rock);
             }
-            else if (chance < 0.05f)
+            else if (chance < 0.25f * coverage)
             {
                 board.Place(positions[index++], factory.Bush);
             }
-            else if (chance < 0.1f)
+            else if (chance < 0.5f * coverage)
             {
                 board.Place(positions[index++], factory.TreeSingle);
             }
-            else if (chance < 0.2f)
+            else if (chance < 0.8f * coverage)
             {
                 board.Place(positions[index++], factory.TreeDouble);
             }
-            else if (chance < 0.3f)
+            else if (chance < 1.0f * coverage)
             {
                 board.Place(positions[index++], factory.TreeTriple);
             }

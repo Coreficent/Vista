@@ -12,18 +12,18 @@
         private bool placedRed = false;
         private bool placedBlue = false;
 
-        private float towerCoverage;
+        private float coverage;
 
-        public Doodad(Board board, Factory factory, float towerCoverage)
+        public Doodad(Board board, Factory factory, float coverage)
         {
             this.board = board;
             this.factory = factory;
-            this.towerCoverage = towerCoverage;
+            this.coverage = coverage;
         }
 
         public bool HasNext()
         {
-            return doodadCount < board.Size * board.Size * towerCoverage;
+            return doodadCount < board.Size * board.Size * coverage;
         }
 
         public void Next()
