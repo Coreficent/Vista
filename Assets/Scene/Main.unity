@@ -441,13 +441,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.042585455, y: 0.21623358, z: -0.009440967, w: 0.9753668}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 5, y: 25, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +681,8 @@ MonoBehaviour:
     type: 3}
   BlueTowerHuge: {fileID: 1884280136229866157, guid: 00fa05f68b13c5b438950e111d21b742,
     type: 3}
+  BlueTowerMassive: {fileID: 7414377057096686740, guid: 7c68310d0d67fa54586f6ae021b45e2b,
+    type: 3}
   RedTowerSmall: {fileID: 3568860254119648491, guid: f63b1e4af1208c04e9ea83279d4c040d,
     type: 3}
   RedTowerMedium: {fileID: 7038242360085289182, guid: 6bb496d02402877409a12166334bd5a5,
@@ -688,6 +690,8 @@ MonoBehaviour:
   RedTowerLarge: {fileID: 692832121175142177, guid: 7178ab10709122b43afbda660c68f6b8,
     type: 3}
   RedTowerHuge: {fileID: 8865231160055108303, guid: 3471ddbe7014118458c247dacb07e7ec,
+    type: 3}
+  RedTowerMassive: {fileID: 2693543332181046310, guid: 67f1af116237f034d8ba9a861922609c,
     type: 3}
 --- !u!1 &2008476758
 GameObject:

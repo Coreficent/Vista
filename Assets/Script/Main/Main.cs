@@ -21,9 +21,8 @@
         [SerializeField]
         private Text text;
 
-        private string statePrefix = "State: ";
-
         private readonly TimeController timeController = new TimeController();
+        private readonly string statePrefix = "State: ";
 
         private Land land;
         private Doodad doodad;
@@ -53,7 +52,6 @@
             float center = board.Size % 2 == 0 ? board.Size / 2 - 0.5f : board.Size / 2 + 0.0f;
             mainCamera.transform.position = new Vector3(center, center, -board.Size);
             land.Size = board.Size;
-            doodad.Size = board.Size;
             text.text = statePrefix + "Generating Land";
             timeController.Reset();
             timeController.SetTime(0.01f);

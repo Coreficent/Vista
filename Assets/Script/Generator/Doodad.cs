@@ -4,11 +4,15 @@
 
     public class Doodad : IIterator
     {
-        private int size = 0;
         private int doodadCount = 0;
 
-        private Board board;
-        private Factory factory;
+        private readonly Board board;
+        private readonly Factory factory;
+
+        private bool placedRed = false;
+        private bool placedBlue = false;
+
+        private float towerCoverage = 0.25f;
 
         public Doodad(Board board, Factory factory)
         {
@@ -16,30 +20,28 @@
             this.factory = factory;
         }
 
-        public int Size
-        {
-            get { return size; }
-            set
-            {
-                size = value;
-                doodadCount = size + size;
-            }
-        }
-
         public bool HasNext()
         {
-            return doodadCount > 0;
+            return doodadCount < board.Size * board.Size * towerCoverage;
         }
 
         public void Next()
         {
-            --doodadCount;
+            ++doodadCount;
 
             Vector3 position = board.RandomPosition();
 
             if (position.x > Random.Range(0.0f, board.Size))
             {
-                if (board.Size - position.x < Random.Range(0.0f, board.Size / 10.0f))
+                if (!placedRed && board.Size - position.x < Random.Range(0.0f, board.Size / 20.0f))
+                {
+                    if (board.GetEastTile(position))
+                    {
+                        board.Replace(position, factory.RedTowerMassive);
+                        placedRed = true;
+                    }
+                }
+                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 10.0f))
                 {
                     board.Replace(position, factory.RedTowerHuge);
                 }
@@ -58,7 +60,15 @@
             }
             else
             {
-                if (position.x < Random.Range(0.0f, board.Size / 10.0f))
+                if (!placedBlue && position.x < Random.Range(0.0f, board.Size / 20.0f))
+                {
+                    if (board.GetWestTile(position))
+                    {
+                        board.Replace(position, factory.BlueTowerMassive);
+                        placedBlue = true;
+                    }
+                }
+                else if (position.x < Random.Range(0.0f, board.Size / 10.0f))
                 {
                     board.Replace(position, factory.BlueTowerHuge);
                 }

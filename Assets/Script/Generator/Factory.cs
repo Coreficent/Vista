@@ -22,9 +22,11 @@
         public TileBase BlueTowerMedium;
         public TileBase BlueTowerLarge;
         public TileBase BlueTowerHuge;
+        public TileBase BlueTowerMassive;
         public TileBase RedTowerSmall;
         public TileBase RedTowerMedium;
         public TileBase RedTowerLarge;
         public TileBase RedTowerHuge;
+        public TileBase RedTowerMassive;
     }
 }
