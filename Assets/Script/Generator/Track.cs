@@ -53,7 +53,7 @@
             }
             else
             {
-                DebugUtility.Log("formed a loop");
+                // DebugUtility.Log("formed a loop");
                 return;
             }
 

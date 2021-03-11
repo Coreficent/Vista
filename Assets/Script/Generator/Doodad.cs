@@ -39,15 +39,15 @@
 
             if (position.x > Random.Range(0.0f, board.Size))
             {
-                if (position.x > Random.Range(0.0f, board.Size / 10.0f))
+                if (board.Size - position.x < Random.Range(0.0f, board.Size / 10.0f))
                 {
                     board.Replace(position, factory.RedTowerHuge);
                 }
-                else if (position.x > Random.Range(0.0f, board.Size / 5.0f))
+                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 5.0f))
                 {
                     board.Replace(position, factory.RedTowerLarge);
                 }
-                else if (position.x > Random.Range(0.0f, board.Size / 2.0f))
+                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 2.0f))
                 {
                     board.Replace(position, factory.RedTowerMedium);
                 }
