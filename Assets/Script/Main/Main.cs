@@ -104,7 +104,7 @@
                     case GenerationState.Rectification:
                         if (!Iterate(rectifier, 100))
                         {
-                            text.text = statePrefix + "Complete: Use Q, E, and movement keys to move the camera.";
+                            text.text = statePrefix + "Complete. Use Q, E, and movement keys to move the camera.";
                             state = GenerationState.Vista;
                         }
                         break;
