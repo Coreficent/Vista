@@ -104,7 +104,7 @@
                     case GenerationState.Rectification:
                         if (!Iterate(rectifier, 100))
                         {
-                            text.text = statePrefix + "Complete";
+                            text.text = statePrefix + "Complete: Use Q, E, and movement keys to move the camera.";
                             state = GenerationState.Vista;
                         }
                         break;
@@ -117,6 +117,24 @@
                         {
                             board.transform.eulerAngles += new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
                         }
+
+                        float moveSpeed = 10.0f;
+
+                        float zoomSpeed = 10.0f;
+
+                        float zoom = 0.0f;
+
+                        if (Input.GetKey(KeyCode.Q))
+                        {
+                            zoom += zoomSpeed;
+                        }
+                        if (Input.GetKey(KeyCode.E))
+                        {
+                            zoom -= zoomSpeed;
+                        }
+
+                        mainCamera.transform.position += new Vector3(Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime, Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime, zoom * Time.deltaTime);
+
                         break;
 
                     default:
