@@ -44,6 +44,8 @@
 
         protected virtual void Start()
         {
+            board.Size = Random.Range(15, 35);
+
             land = new Land(board, factory, Random.Range(0.025f, 0.75f)); ;
             doodad = new Doodad(board, factory, Random.Range(0.05f, 0.2f));
             river = new Track(board, factory, factory.RiverStraight, Random.Range(0.05f, 0.10f));

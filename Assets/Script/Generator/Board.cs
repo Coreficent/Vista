@@ -8,10 +8,9 @@
 
     public class Board : ReinforcedBehavior
     {
-        [SerializeField]
-        private int size;
-
         private Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
+
+        private int size;
 
         protected virtual void Start()
         {
@@ -21,6 +20,7 @@
         public int Size
         {
             get { return size; }
+            set { size = value; }
         }
 
         public TileBase Set(Vector3 position, TileBase tile)
@@ -70,7 +70,6 @@
                 return null;
             }
         }
-
         public TileBase GetNorthTile(Vector3 position)
         {
             return GetTile(new Vector3(0.0f, 1.0f, 0.0f) + position);
