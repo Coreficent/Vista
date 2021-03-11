@@ -37,7 +37,7 @@
                 {
                     if (board.GetEastTile(position))
                     {
-                        board.Replace(position, factory.RedTowerMassive);
+                        board.Set(position, factory.RedTowerMassive);
                         placedRed = true;
                     }
                 }
@@ -64,7 +64,7 @@
                 {
                     if (board.GetWestTile(position))
                     {
-                        board.Replace(position, factory.BlueTowerMassive);
+                        board.Set(position, factory.BlueTowerMassive);
                         placedBlue = true;
                     }
                 }

@@ -23,10 +23,17 @@
             get { return size; }
         }
 
-        public TileBase Place(Vector3 position, TileBase tileType)
+        public TileBase Set(Vector3 position, TileBase tile)
         {
-            TileBase instance = Instantiate(tileType, transform);
+            TileBase instance = Instantiate(tile, transform);
             instance.transform.position = position;
+
+            return instance;
+        }
+
+        public TileBase Place(Vector3 position, TileBase tile)
+        {
+            TileBase instance = Set(position, tile);
             map[instance.HashName] = instance;
 
             return instance;
