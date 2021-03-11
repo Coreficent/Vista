@@ -33,7 +33,7 @@
 
             if (position.x > Random.Range(0.0f, board.Size))
             {
-                if (!placedRed && board.Size - position.x < Random.Range(0.0f, board.Size / 20.0f))
+                if (!placedRed && board.Size - position.x < Random.Range(0.0f, board.Size / 10.0f))
                 {
                     if (board.GetEastTile(position))
                     {
@@ -41,11 +41,11 @@
                         placedRed = true;
                     }
                 }
-                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 10.0f))
+                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 5.0f))
                 {
                     board.Replace(position, factory.RedTowerHuge);
                 }
-                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 5.0f))
+                else if (board.Size - position.x < Random.Range(0.0f, board.Size / 3.0f))
                 {
                     board.Replace(position, factory.RedTowerLarge);
                 }
@@ -60,7 +60,7 @@
             }
             else
             {
-                if (!placedBlue && position.x < Random.Range(0.0f, board.Size / 20.0f))
+                if (!placedBlue && position.x < Random.Range(0.0f, board.Size / 10.0f))
                 {
                     if (board.GetWestTile(position))
                     {
@@ -68,11 +68,11 @@
                         placedBlue = true;
                     }
                 }
-                else if (position.x < Random.Range(0.0f, board.Size / 10.0f))
+                else if (position.x < Random.Range(0.0f, board.Size / 5.0f))
                 {
                     board.Replace(position, factory.BlueTowerHuge);
                 }
-                else if (position.x < Random.Range(0.0f, board.Size / 5.0f))
+                else if (position.x < Random.Range(0.0f, board.Size / 3.0f))
                 {
                     board.Replace(position, factory.BlueTowerLarge);
                 }
