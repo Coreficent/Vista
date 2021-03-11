@@ -71,7 +71,7 @@
                 switch (state)
                 {
                     case GenerationState.Land:
-                        if (!Iterate(land, 1000))
+                        if (!Iterate(land, 1))
                         {
                             text.text = statePrefix + "Generating Doodad";
                             state = GenerationState.Doodad;

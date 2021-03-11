@@ -41,7 +41,36 @@
 
         public void Next()
         {
-            board.Place(positions[index++], factory.Grass);
+            float chance = Random.Range(0.0f, 1.0f);
+
+            if (chance < 0.0125f)
+            {
+                board.Place(positions[index++], factory.Hill);
+            }
+            else if (chance < 0.025f)
+            {
+                board.Place(positions[index++], factory.Rock);
+            }
+            else if (chance < 0.05f)
+            {
+                board.Place(positions[index++], factory.Bush);
+            }
+            else if (chance < 0.1f)
+            {
+                board.Place(positions[index++], factory.TreeSingle);
+            }
+            else if (chance < 0.2f)
+            {
+                board.Place(positions[index++], factory.TreeDouble);
+            }
+            else if (chance < 0.3f)
+            {
+                board.Place(positions[index++], factory.TreeTriple);
+            }
+            else
+            {
+                board.Place(positions[index++], factory.Grass);
+            }
         }
     }
 }
