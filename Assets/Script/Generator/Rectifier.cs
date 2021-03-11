@@ -76,14 +76,14 @@
             {
                 if (middle is RoadStraight)
                 {
-                    if (east is RoadStraight)
+                    if (east is RoadStraight || east is RoadCorner)
                     {
                         if (!FacingSameDirection(middle, east) && !FacingOppositeDirection(middle, east))
                         {
                             return true;
                         }
                     }
-                    if (west is RoadStraight)
+                    if (west is RoadStraight || west is RoadCorner)
                     {
                         if (!FacingSameDirection(middle, west) && !FacingOppositeDirection(middle, west))
                         {
