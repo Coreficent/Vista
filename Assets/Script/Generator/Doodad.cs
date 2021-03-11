@@ -39,11 +39,41 @@
 
             if (position.x > Random.Range(0.0f, board.Size))
             {
-                board.Replace(position, factory.RedTowerHuge);
+                if (position.x > Random.Range(0.0f, board.Size / 10.0f))
+                {
+                    board.Replace(position, factory.RedTowerHuge);
+                }
+                else if (position.x > Random.Range(0.0f, board.Size / 5.0f))
+                {
+                    board.Replace(position, factory.RedTowerLarge);
+                }
+                else if (position.x > Random.Range(0.0f, board.Size / 2.0f))
+                {
+                    board.Replace(position, factory.RedTowerMedium);
+                }
+                else
+                {
+                    board.Replace(position, factory.RedTowerSmall);
+                }
             }
             else
             {
-                board.Replace(position, factory.BlueTowerHuge);
+                if (position.x < Random.Range(0.0f, board.Size / 10.0f))
+                {
+                    board.Replace(position, factory.BlueTowerHuge);
+                }
+                else if (position.x < Random.Range(0.0f, board.Size / 5.0f))
+                {
+                    board.Replace(position, factory.BlueTowerLarge);
+                }
+                else if (position.x < Random.Range(0.0f, board.Size / 2.0f))
+                {
+                    board.Replace(position, factory.BlueTowerMedium);
+                }
+                else
+                {
+                    board.Replace(position, factory.BlueTowerSmall);
+                }
             }
         }
     }
