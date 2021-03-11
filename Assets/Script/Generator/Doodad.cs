@@ -34,7 +34,17 @@
         public void Next()
         {
             --doodadCount;
-            board.Replace(board.RandomPosition(), factory.BlueTowerHuge);
+
+            Vector3 position = board.RandomPosition();
+
+            if (position.x > Random.Range(0.0f, board.Size))
+            {
+                board.Replace(position, factory.RedTowerHuge);
+            }
+            else
+            {
+                board.Replace(position, factory.BlueTowerHuge);
+            }
         }
     }
 }

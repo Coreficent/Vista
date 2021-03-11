@@ -71,14 +71,14 @@
                 switch (state)
                 {
                     case GenerationState.Land:
-                        if (!Iterate(land, 1))
+                        if (!Iterate(land, 100))
                         {
                             text.text = statePrefix + "Generating Doodad";
                             state = GenerationState.Doodad;
                         }
                         break;
                     case GenerationState.Doodad:
-                        if (!Iterate(doodad, 1000))
+                        if (!Iterate(doodad, 10))
                         {
                             river.Stage();
                             text.text = statePrefix + "Generating River";
@@ -87,7 +87,7 @@
                         break;
 
                     case GenerationState.River:
-                        if (!Iterate(river, 1000))
+                        if (!Iterate(river, 10))
                         {
                             road.Stage();
                             text.text = statePrefix + "Generating Road";
@@ -95,7 +95,7 @@
                         }
                         break;
                     case GenerationState.Road:
-                        if (!Iterate(road, 1000))
+                        if (!Iterate(road, 10))
                         {
                             rectifier.Stage();
                             text.text = statePrefix + "Rectifying Scene";
@@ -104,8 +104,6 @@
                         break;
 
                     case GenerationState.Rectification:
-                        // DebugUtility.Log("rectifying");
-
                         if (!Iterate(rectifier, 100))
                         {
                             text.text = statePrefix + "Complete";
