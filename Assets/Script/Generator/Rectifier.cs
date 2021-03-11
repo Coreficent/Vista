@@ -175,7 +175,7 @@
         {
             if (condition(middle, north, west, south, east, angle))
             {
-                DebugUtility.Log("replacing", rectification, middle.transform.position);
+                // DebugUtility.Log("replacing", rectification, middle.transform.position);
                 TileBase rectifiedTile = board.Replace(middle.transform.position, rectification);
                 rectifiedTile.transform.eulerAngles = new Vector3(0.0f, 0.0f, angle);
             }

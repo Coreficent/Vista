@@ -13,5 +13,11 @@
         public TileBase Tower;
         public TileBase Bridge;
         public TileBase RoadIntersection;
+        public TileBase Bush;
+        public TileBase Rock;
+        public TileBase Hill;
+        public TileBase TreeSingle;
+        public TileBase TreeDouble;
+        public TileBase TreeTriple;
     }
 }

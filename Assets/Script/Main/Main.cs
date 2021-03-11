@@ -104,7 +104,7 @@
                         break;
 
                     case GenerationState.Rectification:
-                        DebugUtility.Log("rectifying");
+                        // DebugUtility.Log("rectifying");
 
                         if (!Iterate(rectifier, 1))
                         {
