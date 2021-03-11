@@ -1,22 +1,19 @@
 ﻿namespace Coreficent.Generator
 {
     using Coreficent.Tile;
-    using Coreficent.Utility;
     using System.Collections.Generic;
     using UnityEngine;
 
     public class Track : IIterator
     {
-        private Stack<TileBase> task = new Stack<TileBase>();
-        private HashSet<string> set = new HashSet<string>();
+        private readonly Board board;
+        private readonly Factory factory;
+        private readonly TileBase tileType;
+        private readonly float coverage;
 
-        private Board board;
-        private Factory factory;
-
-        private TileBase tileType;
-
+        private readonly Stack<TileBase> task = new Stack<TileBase>();
+        private readonly HashSet<string> set = new HashSet<string>();
         private int currentCount = 0;
-        private float coverage;
 
         public Track(Board board, Factory factory, TileBase tileType, float coverage)
         {
@@ -53,7 +50,6 @@
             }
             else
             {
-                // DebugUtility.Log("formed a loop");
                 return;
             }
 

@@ -8,7 +8,7 @@
 
     public class Board : ReinforcedBehavior
     {
-        private Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
+        private readonly Dictionary<string, TileBase> map = new Dictionary<string, TileBase>();
 
         private int size;
 

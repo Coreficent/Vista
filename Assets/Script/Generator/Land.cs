@@ -5,14 +5,13 @@
 
     public class Land : IIterator
     {
+        private readonly Board board;
+        private readonly Factory factory;
+        private readonly float coverage;
+
         private List<Vector3> positions = new List<Vector3>();
         private int size = 0;
         private int index = 0;
-
-        private readonly Board board;
-        private readonly Factory factory;
-
-        private float coverage;
 
         public Land(Board board, Factory factory, float coverage)
         {

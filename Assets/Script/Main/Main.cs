@@ -21,14 +21,14 @@
         [SerializeField]
         private Text text;
 
-        private readonly TimeController timeController = new TimeController();
-        private readonly string statePrefix = "State: ";
-
         private Land land;
         private Doodad doodad;
         private Track river;
         private Track road;
         private Rectifier rectifier;
+
+        private readonly TimeController timeController = new TimeController();
+        private readonly string statePrefix = "State: ";
 
         private enum GenerationState
         {

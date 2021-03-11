@@ -4,15 +4,13 @@
 
     public class Doodad : IIterator
     {
-        private int doodadCount = 0;
-
         private readonly Board board;
         private readonly Factory factory;
+        private readonly float coverage;
 
         private bool placedRed = false;
         private bool placedBlue = false;
-
-        private float coverage;
+        private int doodadCount = 0;
 
         public Doodad(Board board, Factory factory, float coverage)
         {
@@ -36,7 +34,7 @@
             {
                 if (!placedRed && board.Size - position.x < Random.Range(0.0f, board.Size / 10.0f))
                 {
-                    if (board.GetEastTile(position))
+                    if (board.GetEastTile(position) && board.GetNorthTile(position) && board.GetSouthTile(position))
                     {
                         board.Set(position, factory.RedTowerMassive);
                         placedRed = true;
@@ -63,7 +61,7 @@
             {
                 if (!placedBlue && position.x < Random.Range(0.0f, board.Size / 10.0f))
                 {
-                    if (board.GetWestTile(position))
+                    if (board.GetWestTile(position) && board.GetNorthTile(position) && board.GetSouthTile(position))
                     {
                         board.Set(position, factory.BlueTowerMassive);
                         placedBlue = true;
