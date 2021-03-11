@@ -106,7 +106,7 @@
                     case GenerationState.Rectification:
                         // DebugUtility.Log("rectifying");
 
-                        if (!Iterate(rectifier, 1))
+                        if (!Iterate(rectifier, 100))
                         {
                             text.text = statePrefix + "Complete";
                             state = GenerationState.Vista;
